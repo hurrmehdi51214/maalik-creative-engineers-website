@@ -41,6 +41,19 @@ def url(depth, target):
     return rel(depth) + target + "/"
 
 
+THEME_BTN = (
+    '<button class="theme-toggle" type="button" data-theme-toggle '
+    'aria-label="Switch colour theme">'
+    '<svg class="t-moon" viewBox="0 0 24 24" aria-hidden="true">'
+    '<path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>'
+    '<svg class="t-sun" viewBox="0 0 24 24" aria-hidden="true">'
+    '<circle cx="12" cy="12" r="4.2"/>'
+    '<path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6'
+    'M5.3 5.3 7.1 7.1M16.9 16.9l1.8 1.8M18.7 5.3 16.9 7.1M7.1 16.9l-1.8 1.8"/></svg>'
+    '<span class="t-label"></span></button>'
+)
+
+
 def tel_html(cls=""):
     """A bracketed placeholder must never become a live tel: link."""
     t = COMPANY["tel"]
@@ -113,18 +126,20 @@ def header(depth, active):
 <div class="utility"><div class="wrap">
   <span class="u-left">%s</span>
   <a href="%s">Downloads</a><a href="%s">Careers</a><a href="%s">Insights</a><a href="%s">Search</a>
+  %s
 </div></div>
 <header class="site-head"><div class="wrap">
   <a class="brand" href="%s" aria-label="Maalik Creative Engineers, home">
-    <img src="%sassets/logo/lockup.png" alt="Maalik Creative Engineers" width="1200" height="271">
+    <img class="logo-dark" src="%sassets/logo/lockup.png" alt="Maalik Creative Engineers" width="1200" height="271">
+    <img class="logo-light" src="%sassets/logo/lockup-light.png" alt="" aria-hidden="true" width="1200" height="271">
   </a>
   <nav aria-label="Primary"><ul class="nav">%s</ul></nav>
   <a class="btn-contact" href="%s">Contact</a>
   <button class="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </div></header>
 """ % (COMPANY["reg_line"], url(depth, "downloads"), url(depth, "careers"),
-       url(depth, "insights"), url(depth, "search"),
-       url(depth, ""), r, "".join(items), url(depth, "contact"))
+       url(depth, "insights"), url(depth, "search"), THEME_BTN,
+       url(depth, ""), r, r, "".join(items), url(depth, "contact"))
 
 
 def mobile_nav(depth):
@@ -155,14 +170,15 @@ def mobile_nav(depth):
     return """
 <div class="mobile-nav" role="dialog" aria-label="Menu">
   <div class="mn-head">
-    <img src="%sassets/logo/lockup.png" alt="Maalik Creative Engineers">
-    <button class="mn-close" aria-label="Close menu">&times;</button>
+    <span><img class="logo-dark" src="%sassets/logo/lockup.png" alt="Maalik Creative Engineers">
+    <img class="logo-light" src="%sassets/logo/lockup-light.png" alt="" aria-hidden="true"></span>
+    <span class="mn-actions">%s<button class="mn-close" aria-label="Close menu">&times;</button></span>
   </div>
   %s
   <div style="margin-top:28px"><a class="btn btn-primary" href="%s">Submit a Requirement <i class="arw"></i></a></div>
 </div>
 <div class="mobile-cta"><a class="btn btn-primary" style="width:100%%;justify-content:center" href="%s">Contact <i class="arw"></i></a></div>
-""" % (r, "".join(acc), url(depth, "contact/request-for-information"), url(depth, "contact"))
+""" % (r, r, THEME_BTN, "".join(acc), url(depth, "contact/request-for-information"), url(depth, "contact"))
 
 
 def footer(depth):
@@ -188,7 +204,8 @@ def footer(depth):
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <img src="%sassets/logo/stacked.png" alt="Maalik Creative Engineers">
+        <img class="logo-dark" src="%sassets/logo/stacked.png" alt="Maalik Creative Engineers">
+        <img class="logo-light" src="%sassets/logo/stacked-light.png" alt="" aria-hidden="true">
         <p>%s</p>
         <div class="foot-reg">%s<br>Registration number: %s<br>NTN: %s</div>
       </div>
@@ -210,7 +227,7 @@ def footer(depth):
     <span class="fb-copy">&copy; <span data-year></span> %s</span>%s
   </div></div>
 </footer>
-""" % (r, DESCRIPTORS["footer"], COMPANY["legal"], COMPANY["reg_no"], COMPANY["ntn"],
+""" % (r, r, DESCRIPTORS["footer"], COMPANY["legal"], COMPANY["reg_no"], COMPANY["ntn"],
        caps, co, en, "<br>".join(COMPANY["address"]),
        tel_html(),
        COMPANY["email_general"], COMPANY["email_general"],
@@ -241,6 +258,7 @@ def page(path, title, desc, body, active="", depth=None):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="%sassets/css/site.css">
+<script>(function(){try{var t=localStorage.getItem("mce-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 </head>
 <body class="has-mcta">
 <a class="skip" href="#main">Skip to content</a>

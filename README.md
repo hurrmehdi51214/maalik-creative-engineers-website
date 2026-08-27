@@ -62,6 +62,19 @@ so `sitemap.xml` and `robots.txt` carry the correct hostname.
 - Partner directory filtering by capability group and by region.
 - Expandable model tables (the C3 domain lists 41 systems, collapsed to 10).
 - Reveal-on-scroll, respecting `prefers-reduced-motion`.
+- **Light and dark themes.** A toggle sits in the utility bar and in the mobile
+  menu header. With no stored choice the site follows the operating system; once
+  the visitor chooses, that choice is kept in `localStorage` and applied before
+  first paint, so there is no flash of the wrong theme. Switching crossfades over
+  380 ms, and the transition is suppressed under `prefers-reduced-motion`.
+
+  The two themes are one token set redefined, not two stylesheets. Imagery bands —
+  hero, sector panels, image cards, split media — stay dark-overlaid in both
+  themes, so hero and panel text keeps a single contrast story. The alternating
+  `.paper` band inverts against whatever the page is: light on a dark page, dark
+  on a light one, preserving the vertical rhythm either way. The logo ships in two
+  lockups, because the wordmark's "Engineers" is white on dark and the lion is a
+  cut-out that only reads correctly against the right background.
 
 ---
 

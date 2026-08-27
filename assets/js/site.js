@@ -177,6 +177,47 @@
     });
   });
 
+
+  /* ---- colour theme -------------------------------------------------
+     Stored choice wins; with nothing stored the page follows the
+     operating system, which is why no attribute is set by default. */
+  var KEY = 'mce-theme';
+  function systemTheme() {
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  function currentTheme() {
+    return document.documentElement.getAttribute('data-theme') || systemTheme();
+  }
+  function applyTheme(next, animate) {
+    var root = document.documentElement;
+    if (animate) {
+      root.classList.add('theme-anim');
+      window.setTimeout(function () { root.classList.remove('theme-anim'); }, 420);
+    }
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+      b.setAttribute('aria-label', next === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+    });
+  }
+  document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+    b.setAttribute('aria-label', currentTheme() === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+    b.addEventListener('click', function () {
+      applyTheme(currentTheme() === 'light' ? 'dark' : 'light', true);
+    });
+  });
+  /* Track the OS while the visitor has not made an explicit choice. */
+  var mq = window.matchMedia('(prefers-color-scheme: light)');
+  var onMq = function () {
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    if (stored !== 'light' && stored !== 'dark') {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  };
+  if (mq.addEventListener) mq.addEventListener('change', onMq);
+  else if (mq.addListener) mq.addListener(onMq);
+
   /* ---- current year ---- */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

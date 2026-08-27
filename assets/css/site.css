@@ -41,6 +41,21 @@
   --head-h:82px;
   --util-h:34px;
   --ease:cubic-bezier(.2,.7,.3,1);
+
+  /* theme-dependent surfaces, redefined wholesale for light mode below */
+  --head-bg:rgba(6,6,7,.90);
+  --mega-bg:#08080a;
+  --grid-line:rgba(255,255,255,.028);
+  --grid-line-hero:rgba(255,255,255,.035);
+  --line-strong:rgba(255,255,255,.30);
+  --row-hover:rgba(255,255,255,.022);
+  --accent-text:var(--red-hot);
+  --paper-accent:var(--red-deep);
+  --paper-card:#ffffff;
+  --paper-line-strong:rgba(10,12,16,.30);
+  --pf-a:#141519;
+  --pf-b:#0a0a0c;
+  color-scheme:dark;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -77,7 +92,7 @@ p{margin:0 0 1.15em}
 .eyebrow{
   font-family:"Barlow Condensed",sans-serif;font-weight:500;
   font-size:.83rem;letter-spacing:.34em;text-transform:uppercase;
-  color:var(--red-hot);margin:0 0 1.15rem;display:flex;align-items:center;gap:.85rem;
+  color:var(--accent-text);margin:0 0 1.15rem;display:flex;align-items:center;gap:.85rem;
 }
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--red);flex:none}
 .eyebrow.plain::before{display:none}
@@ -99,7 +114,7 @@ p{margin:0 0 1.15em}
 .section.tight{padding:72px 0}
 .section.paper{background:var(--paper);color:var(--ink-text)}
 .section.paper .lede,.section.paper .text-dim{color:var(--ink-text-dim)}
-.section.paper .eyebrow{color:var(--red-deep)}
+.section.paper .eyebrow{color:var(--paper-accent)}
 .section.panel{background:var(--panel)}
 .section.ink2{background:var(--ink-2)}
 .center{text-align:center}
@@ -119,8 +134,8 @@ p{margin:0 0 1.15em}
 .texture{position:relative}
 .texture::before{
   content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
   background-size:74px 74px;
   mask-image:radial-gradient(ellipse 90% 70% at 50% 40%,#000 20%,transparent 78%);
   -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 40%,#000 20%,transparent 78%);
@@ -139,7 +154,7 @@ p{margin:0 0 1.15em}
 .utility .u-left{margin-right:auto;color:var(--text-faint);letter-spacing:.13em}
 
 .site-head{
-  position:sticky;top:0;z-index:70;background:rgba(6,6,7,.90);
+  position:sticky;top:0;z-index:70;background:var(--head-bg);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);transition:height .25s var(--ease);
 }
@@ -179,7 +194,7 @@ body.scrolled .brand img{height:36px}
 .nav>li.has-mega{position:static}
 .mega{
   position:absolute;left:0;right:0;top:100%;
-  background:#08080a;
+  background:var(--mega-bg);
   border-top:1px solid var(--line);border-bottom:3px solid var(--red);
   opacity:0;visibility:hidden;transform:translateY(-9px);
   transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s;
@@ -193,11 +208,11 @@ body.scrolled .brand img{height:36px}
 .mega-item{display:block;padding:13px 0;border-bottom:1px solid var(--line-soft)}
 .mega-item:last-child{border-bottom:none}
 .mega-item .mi-top{display:flex;align-items:baseline;gap:.6rem}
-.mega-item .mi-n{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--red);flex:none}
+.mega-item .mi-n{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--accent-text);flex:none}
 .mega-item .mi-name{font-family:"Barlow Semi Condensed",sans-serif;text-transform:uppercase;
   letter-spacing:.07em;font-weight:500;font-size:1rem;line-height:1.2;transition:color .16s}
 .mega-item .mi-def{font-size:.8rem;color:var(--text-faint);line-height:1.45;margin-top:.3rem}
-.mega-item:hover .mi-name{color:var(--red-hot)}
+.mega-item:hover .mi-name{color:var(--accent-text)}
 .mega-utility{background:rgba(225,20,20,.07);border:1px solid rgba(225,20,20,.25);padding:22px;border-radius:var(--radius)}
 .mega-utility .ico{width:32px;height:32px;margin-bottom:14px}
 .mega-utility h4{color:#fff;margin-bottom:.6rem;letter-spacing:.07em}
@@ -221,7 +236,7 @@ body.scrolled .brand img{height:36px}
 .acc-b{display:none;padding:0 0 15px}
 .acc.open .acc-b{display:block}
 .acc-b a{display:block;padding:9px 0;color:var(--text-dim);font-size:.94rem}
-.acc-b a:hover{color:var(--red-hot)}
+.acc-b a:hover{color:var(--accent-text)}
 .mobile-cta{position:fixed;left:0;right:0;bottom:0;padding:14px 24px;background:var(--panel-2);
   border-top:1px solid var(--line);z-index:210;display:none}
 
@@ -237,9 +252,9 @@ body.scrolled .brand img{height:36px}
 .btn:hover .arw{width:26px}
 .btn-primary{background:var(--red);color:#fff}
 .btn-primary:hover{background:var(--red-hot)}
-.btn-ghost{border-color:rgba(255,255,255,.30);color:var(--text)}
+.btn-ghost{border-color:var(--line-strong);color:var(--text)}
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.05)}
-.btn-dark{border-color:rgba(10,12,16,.3);color:var(--ink-text)}
+.btn-dark{border-color:var(--paper-line-strong);color:var(--ink-text)}
 .btn-dark:hover{border-color:var(--ink-text);background:rgba(10,12,16,.05)}
 .btn-sm{padding:11px 20px;font-size:.88rem}
 .btn-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px}
@@ -253,7 +268,7 @@ body.scrolled .brand img{height:36px}
 .tlink .arw::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;
   border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg)}
 .tlink:hover .arw{width:24px}
-.paper .tlink{color:var(--red-deep)}
+.paper .tlink{color:var(--paper-accent)}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden;background:#000}
@@ -268,8 +283,8 @@ body.scrolled .brand img{height:36px}
 }
 .hero-grid{
   position:absolute;inset:0;z-index:1;pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-image:linear-gradient(var(--grid-line-hero) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--grid-line-hero) 1px,transparent 1px);
   background-size:88px 88px;
   mask-image:linear-gradient(90deg,#000 0%,transparent 62%);
   -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 62%);
@@ -287,7 +302,7 @@ body.scrolled .brand img{height:36px}
 .crumb{font-family:"Barlow Condensed",sans-serif;font-size:.82rem;letter-spacing:.2em;
   text-transform:uppercase;color:var(--text-faint);margin-bottom:1.4rem}
 .crumb a{color:var(--text-faint);transition:color .16s}
-.crumb a:hover{color:var(--red-hot)}
+.crumb a:hover{color:var(--accent-text)}
 .crumb span{margin:0 .55rem;opacity:.45}
 
 /* ---------- credibility bar ---------- */
@@ -307,15 +322,15 @@ body.scrolled .brand img{height:36px}
   display:flex;flex-direction:column;height:100%;
 }
 .card:hover{border-left-color:var(--red);background:var(--panel-2)}
-.card .c-n{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--red);margin-bottom:1.1rem;letter-spacing:.08em}
+.card .c-n{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--accent-text);margin-bottom:1.1rem;letter-spacing:.08em}
 .card h3{margin-bottom:.75rem;line-height:1.16}
 .card p{font-size:.93rem;color:var(--text-dim);line-height:1.6;margin-bottom:1.3rem}
 .card .tlink{margin-top:auto}
 .card .ico{margin-bottom:1.2rem}
-.paper .card{background:#fff;border-color:var(--line-dark)}
-.paper .card:hover{border-left-color:var(--red);background:#fff}
+.paper .card{background:var(--paper-card);border-color:var(--line-dark)}
+.paper .card:hover{border-left-color:var(--red);background:var(--paper-card)}
 .paper .card p{color:var(--ink-text-dim)}
-.paper .card .c-n{color:var(--red-deep)}
+.paper .card .c-n{color:var(--paper-accent)}
 
 .ico{width:40px;height:40px;color:var(--red);display:inline-block;flex:none;line-height:0}
 .ico svg{width:100%;height:100%;display:block}
@@ -362,7 +377,7 @@ body.scrolled .brand img{height:36px}
 .step .dot{width:13px;height:13px;border-radius:50%;background:var(--ink);border:2px solid var(--red);
   position:relative;z-index:2;margin-bottom:22px;margin-top:20px}
 .step:hover .dot{background:var(--red);box-shadow:0 0 0 6px var(--red-glow)}
-.step .sn{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--red);letter-spacing:.1em}
+.step .sn{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--accent-text);letter-spacing:.1em}
 .step h4{margin:.55rem 0 .6rem;line-height:1.25;letter-spacing:.05em;font-size:.98rem}
 .step p{font-size:.85rem;color:var(--text-faint);line-height:1.55;margin:0}
 .paper .rail::before{background:var(--line-dark)}
@@ -380,16 +395,16 @@ table.spec th{
 table.spec td{padding:14px 20px;border-bottom:1px solid var(--line-soft);color:var(--text-dim);vertical-align:top}
 table.spec tr:last-child td{border-bottom:none}
 table.spec tbody tr{transition:background .15s}
-table.spec tbody tr:hover{background:rgba(255,255,255,.022)}
+table.spec tbody tr:hover{background:var(--row-hover)}
 table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);white-space:nowrap;font-size:.86rem}
 .paper table.spec th{background:var(--paper-2);color:var(--ink-text);border-bottom-color:var(--line-dark)}
 .paper table.spec td{color:var(--ink-text-dim);border-bottom-color:var(--line-dark)}
 .paper table.spec td.desig{color:var(--ink-text)}
-.paper .tbl-wrap{border-color:var(--line-dark);background:#fff}
+.paper .tbl-wrap{border-color:var(--line-dark);background:var(--paper-card)}
 
 .badge{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.1em;padding:3px 7px;
   border-radius:2px;border:1px solid var(--line);color:var(--text-faint)}
-.badge.pp{border-color:rgba(225,20,20,.42);color:var(--red-hot)}
+.badge.pp{border-color:rgba(225,20,20,.42);color:var(--accent-text)}
 
 /* ---------- chips / tags ---------- */
 .chips{display:flex;flex-wrap:wrap;gap:9px}
@@ -408,7 +423,7 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
   font-family:"Barlow Semi Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;
   font-size:1.02rem;font-weight:500;display:flex;align-items:center;gap:.9rem}
 .glance div:last-child{border-right:none}
-.glance .gn{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--red);letter-spacing:.06em}
+.glance .gn{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--accent-text);letter-spacing:.06em}
 
 /* ---------- split feature ---------- */
 .split{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch}
@@ -441,7 +456,7 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
   letter-spacing:.07em;font-size:.95rem;font-weight:500;line-height:1.25;
   color:var(--text-dim);transition:color .2s}
 .logowall a:hover .lw-name{color:var(--text)}
-.logowall .lw-c{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--red);letter-spacing:.08em}
+.logowall .lw-c{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--accent-text);letter-spacing:.08em}
 
 /* ---------- forms ---------- */
 .form{display:grid;gap:20px}
@@ -481,10 +496,10 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
 .foot-col ul{list-style:none;margin:0;padding:0}
 .foot-col li{margin-bottom:.72rem}
 .foot-col a{font-size:.885rem;color:var(--text-faint);transition:color .16s;line-height:1.45}
-.foot-col a:hover{color:var(--red-hot)}
+.foot-col a:hover{color:var(--accent-text)}
 .foot-contact p{font-size:.86rem;color:var(--text-faint);line-height:1.7;margin-bottom:1rem}
 .foot-contact a{color:var(--text-dim)}
-.foot-contact a:hover{color:var(--red-hot)}
+.foot-contact a:hover{color:var(--accent-text)}
 .foot-bottom{border-top:1px solid var(--line);padding:22px 0;background:var(--panel-2)}
 .foot-bottom .wrap{display:flex;flex-wrap:wrap;gap:22px;align-items:center;
   font-family:"Barlow Condensed",sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
@@ -501,7 +516,7 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
 .numlist li{counter-increment:n;position:relative;padding:26px 0 26px 74px;border-bottom:1px solid var(--line-soft)}
 .numlist li:last-child{border-bottom:none}
 .numlist li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:24px;
-  font-family:"IBM Plex Mono",monospace;font-size:.9rem;color:var(--red);
+  font-family:"IBM Plex Mono",monospace;font-size:.9rem;color:var(--accent-text);
   border:1px solid rgba(225,20,20,.35);width:42px;height:42px;display:flex;align-items:center;
   justify-content:center;border-radius:2px}
 .numlist h4{margin-bottom:.5rem;letter-spacing:.07em;font-size:1.06rem}
@@ -525,7 +540,7 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
 .quote p{font-family:"Barlow Semi Condensed",sans-serif;font-size:clamp(1.35rem,2.4vw,1.95rem);
   line-height:1.32;font-weight:400;color:var(--text);letter-spacing:.01em;text-transform:none}
 .quote cite{font-family:"Barlow Condensed",sans-serif;font-style:normal;font-size:.85rem;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--red-hot)}
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent-text)}
 
 .plate{
   aspect-ratio:16/10;background:
@@ -545,7 +560,7 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
 
 .people{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .person{border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
-.person .pf{aspect-ratio:4/5;background:linear-gradient(160deg,#141519,#0a0a0c);
+.person .pf{aspect-ratio:4/5;background:linear-gradient(160deg,var(--pf-a),var(--pf-b));
   display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid var(--line-soft)}
 .person .pf::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:3px;background:var(--red)}
 .person .pf span{font-family:"Barlow Condensed",sans-serif;font-size:.76rem;letter-spacing:.22em;
@@ -553,7 +568,7 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
 .person .pb{padding:24px}
 .person .pb h4{margin-bottom:.35rem;font-size:1.05rem;letter-spacing:.07em}
 .person .role{font-family:"Barlow Condensed",sans-serif;font-size:.8rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--red-hot);margin-bottom:.9rem}
+  text-transform:uppercase;color:var(--accent-text);margin-bottom:.9rem}
 .person .pb p{font-size:.89rem;color:var(--text-dim);margin:0;line-height:1.6}
 
 .empty{text-align:center;padding:66px 24px;border:1px dashed var(--line);border-radius:var(--radius)}
@@ -629,7 +644,7 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
   color:var(--red-hot);font-family:"Barlow Semi Condensed",sans-serif;text-transform:uppercase;
   letter-spacing:.08em;font-size:1rem;line-height:1.3;margin-bottom:.85rem !important;
 }
-.paper .pill-head{color:var(--red-deep)}
+.paper .pill-head{color:var(--paper-accent)}
 /* expandable table state */
 .tbl-wrap.is-open{max-height:none}
 /* file input */
@@ -655,3 +670,170 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .plate-svg{position:absolute;inset:0;width:100%;height:100%;display:block;
   transition:transform .55s var(--ease),opacity .3s;opacity:.95}
 .icard:hover .plate-svg{transform:scale(1.04)}
+
+/* ============================================================
+   THEMING
+   Dark is the brand default. Light is a full inversion of the
+   content surfaces; imagery bands stay dark-overlaid in both
+   themes so that hero and panel text keeps one contrast story.
+   ============================================================ */
+
+/* Surfaces that sit on top of dark imagery keep the dark token set in
+   every theme. Custom properties inherit, so redefining them on the
+   container fixes every descendant in one place. */
+.hero,.band,.spanel,.icard-img,.split-media{
+  --text:#e9eaec;
+  --text-dim:rgba(233,234,236,.62);
+  --text-faint:rgba(233,234,236,.42);
+  --line:rgba(255,255,255,.12);
+  --line-soft:rgba(255,255,255,.07);
+  --line-strong:rgba(255,255,255,.30);
+  --accent-text:var(--red-hot);
+  color:var(--text);
+}
+
+/* The alternating band inverts against whatever the page is. */
+.section.paper{--accent-text:var(--paper-accent)}
+
+:root[data-theme="light"]{
+  --ink:#f5f7f9;
+  --ink-2:#eceef2;
+  --panel:#ffffff;
+  --panel-2:#f1f3f6;
+  --paper:#0c0d10;
+  --paper-2:#16181c;
+
+  --text:#14181d;
+  --text-dim:rgba(20,24,29,.70);
+  --text-faint:rgba(20,24,29,.50);
+  --ink-text:#e9eaec;
+  --ink-text-dim:rgba(233,234,236,.64);
+
+  --line:rgba(12,14,18,.16);
+  --line-soft:rgba(12,14,18,.09);
+  --line-dark:rgba(255,255,255,.14);
+
+  --head-bg:rgba(255,255,255,.92);
+  --mega-bg:#ffffff;
+  --grid-line:rgba(12,14,18,.055);
+  --line-strong:rgba(12,14,18,.32);
+  --row-hover:rgba(12,14,18,.03);
+  --accent-text:#c1100d;
+  --paper-accent:var(--red-hot);
+  --paper-card:#15171b;
+  --paper-line-strong:rgba(255,255,255,.34);
+  --pf-a:#eef0f4;
+  --pf-b:#e1e4ea;
+  color-scheme:light;
+}
+
+/* Inside the inverted band, light mode needs the dark token set back. */
+:root[data-theme="light"] .section.paper{
+  --text:#e9eaec;
+  --text-dim:rgba(233,234,236,.64);
+  --text-faint:rgba(233,234,236,.44);
+  --line:rgba(255,255,255,.12);
+  --line-soft:rgba(255,255,255,.07);
+  --line-strong:rgba(255,255,255,.30);
+  --panel:#15171b;
+  --panel-2:#1b1e23;
+  --row-hover:rgba(255,255,255,.03);
+}
+
+/* A few light-mode specifics that tokens alone do not cover. */
+:root[data-theme="light"] .site-head{border-bottom-color:rgba(12,14,18,.12)}
+:root[data-theme="light"] .utility{background:var(--panel-2)}
+:root[data-theme="light"] .mega{box-shadow:0 18px 40px -24px rgba(12,14,18,.35)}
+:root[data-theme="light"] .stats{background:var(--panel-2)}
+:root[data-theme="light"] .logowall a:hover{background:var(--panel-2)}
+:root[data-theme="light"] .card{background:var(--panel);border-color:var(--line-soft)}
+:root[data-theme="light"] .card:hover{background:#fff;border-left-color:var(--red)}
+:root[data-theme="light"] .icard{background:var(--panel)}
+:root[data-theme="light"] .empty{border-color:var(--line)}
+:root[data-theme="light"] .site-foot{background:var(--ink-2)}
+:root[data-theme="light"] .foot-bottom{background:var(--panel-2)}
+:root[data-theme="light"] .mobile-nav{background:var(--ink)}
+:root[data-theme="light"] .note{background:linear-gradient(90deg,rgba(225,20,20,.05),transparent 70%)}
+:root[data-theme="light"] .form-ok h4{color:var(--text)}
+:root[data-theme="light"] .mega-utility h4{color:var(--text)}
+:root[data-theme="light"] .mega-utility{background:rgba(225,20,20,.05);border-color:rgba(225,20,20,.22)}
+
+/* Follow the operating system until the visitor chooses for themselves. */
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]):not([data-theme="light"]){
+    --ink:#f5f7f9; --ink-2:#eceef2; --panel:#ffffff; --panel-2:#f1f3f6;
+    --paper:#0c0d10; --paper-2:#16181c;
+    --text:#14181d; --text-dim:rgba(20,24,29,.70); --text-faint:rgba(20,24,29,.50);
+    --ink-text:#e9eaec; --ink-text-dim:rgba(233,234,236,.64);
+    --line:rgba(12,14,18,.16); --line-soft:rgba(12,14,18,.09); --line-dark:rgba(255,255,255,.14);
+    --head-bg:rgba(255,255,255,.92); --mega-bg:#ffffff; --grid-line:rgba(12,14,18,.055);
+    --line-strong:rgba(12,14,18,.32); --row-hover:rgba(12,14,18,.03);
+    --accent-text:#c1100d; --paper-accent:var(--red-hot); --paper-card:#15171b;
+    --paper-line-strong:rgba(255,255,255,.34); --pf-a:#eef0f4; --pf-b:#e1e4ea;
+    color-scheme:light;
+  }
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .section.paper{
+    --text:#e9eaec; --text-dim:rgba(233,234,236,.64); --text-faint:rgba(233,234,236,.44);
+    --line:rgba(255,255,255,.12); --line-soft:rgba(255,255,255,.07);
+    --line-strong:rgba(255,255,255,.30); --panel:#15171b; --panel-2:#1b1e23;
+  }
+}
+
+/* ---------- the control ---------- */
+.theme-toggle{
+  background:none;border:0;padding:0 2px;cursor:pointer;color:var(--text-faint);
+  display:inline-flex;align-items:center;gap:.5rem;line-height:0;
+  font-family:"Barlow Condensed",sans-serif;font-size:.8rem;letter-spacing:.17em;
+  text-transform:uppercase;transition:color .18s;
+}
+.theme-toggle:hover{color:var(--text)}
+.theme-toggle svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6}
+.theme-toggle .t-sun{display:none}
+.theme-toggle .t-label::after{content:"Light"}
+:root[data-theme="light"] .theme-toggle .t-moon{display:none}
+:root[data-theme="light"] .theme-toggle .t-sun{display:block}
+:root[data-theme="light"] .theme-toggle .t-label::after{content:"Dark"}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .theme-toggle .t-moon{display:none}
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .theme-toggle .t-sun{display:block}
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .theme-toggle .t-label::after{content:"Dark"}
+}
+.mn-actions{display:flex;align-items:center;gap:18px}
+.mn-actions .theme-toggle{font-size:.92rem;color:var(--text-dim)}
+
+/* Logo lockups: one per theme, so the wordmark stays legible either way. */
+.brand .logo-light,.mn-head .logo-light,.foot-brand .logo-light{display:none}
+:root[data-theme="light"] .brand .logo-dark,
+:root[data-theme="light"] .mn-head .logo-dark,
+:root[data-theme="light"] .foot-brand .logo-dark{display:none}
+:root[data-theme="light"] .brand .logo-light,
+:root[data-theme="light"] .mn-head .logo-light,
+:root[data-theme="light"] .foot-brand .logo-light{display:block}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .brand .logo-dark,
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .mn-head .logo-dark,
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .foot-brand .logo-dark{display:none}
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .brand .logo-light,
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .mn-head .logo-light,
+  :root:not([data-theme="dark"]):not([data-theme="light"]) .foot-brand .logo-light{display:block}
+}
+
+/* ---------- the crossfade ----------
+   Only applied while a switch is in flight, so ordinary hover and scroll
+   work stays cheap. */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after{
+  transition:background-color .38s var(--ease),
+             background-image .38s var(--ease),
+             color .38s var(--ease),
+             border-color .38s var(--ease),
+             fill .38s var(--ease),
+             stroke .38s var(--ease),
+             box-shadow .38s var(--ease) !important;
+}
+@media (prefers-reduced-motion:reduce){
+  html.theme-anim,html.theme-anim *,
+  html.theme-anim *::before,html.theme-anim *::after{transition:none !important}
+}
