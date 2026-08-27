@@ -38,7 +38,7 @@ def build_home():
         % (url(d, "insights"), t) for t in BRIEF_TOPICS[:3])
 
     body = (
-        hero(d, "hero-guardian", "Defence and advanced technology solutions",
+        hero(d, "hero-command", "Defence and advanced technology solutions",
              "From stated requirement<br>to sustained capability.", DESCRIPTORS["hero_sub"],
              [("Explore Capabilities", url(d, "capabilities"), "btn-primary"),
               ("Submit a Requirement", url(d, "contact/request-for-information"), "btn-ghost")])
