@@ -954,6 +954,43 @@ PARTNERS = [
      "supplies": "Energy efficiency, climate monitoring and resource optimisation."},
 ]
 
+# Logos held on file. A manufacturer with no entry here is listed as text only,
+# which is the safe default under Section 10.2 until written permission exists.
+PARTNER_LOGOS = {
+    "aerospace-long-march", "aviaexport", "beretta", "cetc-international",
+    "newcon-optik", "samkwang", "star-vision", "steiner-eoptics", "unique-alpine",
+    "hytera", "kaspersky", "forcepoint", "cyber-delivery-partner",
+    "ai-digital-intelligence-group", "optronics-manufacturer-islamabad",
+}
+
+# Manufacturer product photography, mapped to the family it illustrates.
+# domain slug -> {family index: image stem in assets/img/products}
+FAMILY_IMAGES = {
+    "electro-optics-night-vision": {
+        0: "eo-cooled", 1: "eo-uncooled", 2: "eo-c2", 3: "eo-border",
+        4: "eo-combat", 5: "eo-nightvision", 6: "eo-vehicle-marine",
+        7: "eo-observation", 8: "eo-accessories",
+    },
+    "command-control-communications": {
+        2: "c3-dmr-professional", 3: "c3-dmr-business", 5: "c3-tetra", 6: "c3-poc",
+    },
+    "safe-city-critical-infrastructure": {0: "sc-bodycam"},
+}
+
+# A short strip of named systems shown above the model table.
+FEATURED = {
+    "electro-optics-night-vision": [
+        ("eo-tarsier-lr", "TARSIER LR 80", "Long range thermal scope and sight"),
+        ("eo-mini50", "TARSIER MINI 50", "Compact thermal monocular and weapon sight"),
+        ("eo-tripod", "Picatinny 1913 interface", "Tripod interface for handheld optronics"),
+    ],
+    "command-control-communications": [
+        ("c3-dmr-mobile", "HM78X", "Professional DMR mobile"),
+        ("c3-s1", "S1 Pro", "S series business two-way radio"),
+        ("c3-dual-mode", "PDC680", "Dual-mode rugged radio and smartphone"),
+    ],
+}
+
 PARTNER_GROUPS = ["Defence systems and platforms", "Communications and critical communications",
                   "Optronics and thermal imaging", "Cyber security", "AI and digital intelligence"]
 PARTNER_REGIONS = ["China", "Europe", "North America", "Russia and Central Asia", "East Asia", "Pakistan"]

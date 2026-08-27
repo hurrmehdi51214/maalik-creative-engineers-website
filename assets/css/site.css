@@ -448,10 +448,20 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
 /* ---------- logo wall ---------- */
 .logowall{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-soft);
   border-left:1px solid var(--line-soft)}
-.logowall a{border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
-  padding:30px 22px;min-height:118px;display:flex;flex-direction:column;justify-content:center;
-  gap:.35rem;transition:background .2s}
-.logowall a:hover{background:var(--panel)}
+.logowall .lw-cell{border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+  padding:22px 20px;min-height:132px;display:flex;flex-direction:column;justify-content:center;
+  gap:.55rem;transition:background .2s}
+.logowall .lw-cell:hover{background:var(--panel)}
+.logowall .lw-cell.is-text{padding:30px 22px;gap:.35rem}
+/* Trademarks are shown unaltered on their own light tile, which keeps every
+   mark legible in both themes without recolouring anyone's logo. */
+.lw-logo{display:block;background:#fff;border-radius:var(--radius);padding:10px 12px;
+  border:1px solid rgba(12,14,18,.10)}
+.lw-logo img{width:100%;height:auto;display:block;filter:saturate(.92)}
+.logowall .lw-cell:hover .lw-logo img{filter:none}
+.partner-mark{background:#fff;border:1px solid rgba(12,14,18,.12);border-radius:var(--radius);
+  padding:18px 22px;margin-bottom:26px;max-width:340px}
+.partner-mark img{width:100%;height:auto;display:block}
 .logowall .lw-name{font-family:"Barlow Semi Condensed",sans-serif;text-transform:uppercase;
   letter-spacing:.07em;font-size:.95rem;font-weight:500;line-height:1.25;
   color:var(--text-dim);transition:color .2s}
@@ -837,3 +847,21 @@ html.theme-anim *::after{
   html.theme-anim,html.theme-anim *,
   html.theme-anim *::before,html.theme-anim *::after{transition:none !important}
 }
+
+/* ---------- manufacturer product photography ---------- */
+.icard-img.is-shot{background:#eef0f3;aspect-ratio:4/3}
+.icard-img.is-shot img{width:100%;height:100%;object-fit:cover;opacity:1}
+.icard-img.is-shot::after{
+  background:linear-gradient(0deg,rgba(6,6,7,.10) 0%,rgba(6,6,7,0) 42%);
+}
+.icard:hover .icard-img.is-shot img{transform:scale(1.04)}
+
+.shot{margin:0;border:1px solid var(--line-soft);border-radius:var(--radius);
+  overflow:hidden;background:#eef0f3}
+.shot img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover;
+  transition:transform .5s var(--ease)}
+.shot:hover img{transform:scale(1.03)}
+.shot figcaption{background:var(--panel);padding:18px 20px;display:flex;flex-direction:column;
+  gap:.3rem;border-top:1px solid var(--line-soft)}
+.shot figcaption .mono{color:var(--text);font-size:.9rem;letter-spacing:.06em}
+.shot figcaption span:last-child{font-size:.85rem;color:var(--text-dim)}

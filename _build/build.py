@@ -342,6 +342,22 @@ def cta_band(depth, img="contact-band"):
 </section>""" % (rel(depth), img, url(depth, "contact/request-for-information"), url(depth, "downloads"))
 
 
+def logo_wall(depth, partners):
+    """Logo tile where we hold the asset, typeset name where we do not."""
+    out = []
+    for p in partners:
+        if p["slug"] in PARTNER_LOGOS:
+            inner = ('<span class="lw-logo"><img src="%sassets/img/partners/%s.png" alt="%s" '
+                     'loading="lazy" width="420" height="200"></span>'
+                     % (rel(depth), p["slug"], p["name"]))
+        else:
+            inner = '<span class="lw-name">%s</span>' % p["name"]
+        out.append('<a class="lw-cell%s" href="%s"><span class="lw-c">%s</span>%s</a>'
+                   % ("" if p["slug"] in PARTNER_LOGOS else " is-text",
+                      url(depth, "partners/" + p["slug"]), p["country"], inner))
+    return '<div class="logowall">%s</div>' % "".join(out)
+
+
 def domain_cards(depth, klass="g4", subset=None, paper=False):
     items = subset if subset else DOMAINS
     out = []

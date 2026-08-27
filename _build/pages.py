@@ -29,9 +29,7 @@ def build_home():
         % st for st in DELIVERY)
 
     featured = [p for p in PARTNERS if p.get("featured")] + [p for p in PARTNERS if not p.get("featured")]
-    wall = "".join(
-        '<a href="%s"><span class="lw-c">%s</span><span class="lw-name">%s</span></a>'
-        % (url(d, "partners/" + p["slug"]), p["country"], p["name"]) for p in featured[:15])
+    wall = logo_wall(d, featured[:15])
 
     insights = "".join(
         '<a class="card rv" href="%s"><span class="c-n">TECHNICAL BRIEF</span><h3>%s</h3>'
@@ -116,7 +114,7 @@ def build_home():
         offer comes with a named manufacturer, a documented authorisation and a factory-level support
         route.</p>
     </div>
-    <div class="logowall">%s</div>
+    %s
     <div class="btn-row"><a class="btn btn-ghost" href="%s">View the partner network <i class="arw"></i></a></div>
   </div>
 </section>
@@ -191,15 +189,39 @@ def build_domain(dm):
     glance = "".join('<div><span class="gn">%02d</span>%s</div>' % (i + 1, g)
                      for i, g in enumerate(dm["glance"]))
 
-    fams = "".join(
-        '<a class="icard rv" href="%s"><div class="icard-img is-plate">%s'
-        '<span class="icard-tag">%s</span></div>'
-        '<div class="icard-body"><h3>%s</h3><p>%s</p>'
-        '<span class="tlink">Enquire about this family <i class="arw"></i></span></div></a>'
-        % (url(d, "contact/request-for-information"),
-           plate(dm["slug"] + "|" + name, dm["icon"], "DOMAIN %s / %02d" % (dm["n"], i + 1)),
-           place, name, blurb)
-        for i, (name, blurb, place) in enumerate(dm["families"]))
+    fimgs = FAMILY_IMAGES.get(dm["slug"], {})
+    fam_bits = []
+    for i, (name, blurb, place) in enumerate(dm["families"]):
+        stem = fimgs.get(i)
+        if stem:
+            media = ('<div class="icard-img is-shot"><img src="%sassets/img/products/%s.jpg" '
+                     'alt="%s" loading="lazy" width="1000" height="750">'
+                     '<span class="icard-tag">%s</span></div>' % (rel(d), stem, name, place))
+        else:
+            media = ('<div class="icard-img is-plate">%s<span class="icard-tag">%s</span></div>'
+                     % (plate(dm["slug"] + "|" + name, dm["icon"],
+                              "DOMAIN %s / %02d" % (dm["n"], i + 1)), place))
+        fam_bits.append(
+            '<a class="icard rv" href="%s">%s'
+            '<div class="icard-body"><h3>%s</h3><p>%s</p>'
+            '<span class="tlink">Enquire about this family <i class="arw"></i></span></div></a>'
+            % (url(d, "contact/request-for-information"), media, name, blurb))
+    fams = "".join(fam_bits)
+
+    feat = FEATURED.get(dm["slug"], [])
+    feat_block = ""
+    if feat:
+        cells = "".join(
+            '<figure class="shot rv"><img src="%sassets/img/products/%s.jpg" alt="%s" '
+            'loading="lazy" width="1000" height="750">'
+            '<figcaption><span class="mono">%s</span><span>%s</span></figcaption></figure>'
+            % (rel(d), stem, cap, desig, cap) for stem, desig, cap in feat)
+        feat_block = ('<section class="section tight"><div class="wrap">'
+                      '<div class="sec-head"><p class="eyebrow">Featured systems</p>'
+                      '<h2 class="rule-h">Manufacturer photography.</h2>'
+                      '<p class="lede">Supplied by the manufacturer. Performance parameters are '
+                      'released only through a verified datasheet request.</p></div>'
+                      '<div class="grid g3 gap-md">%s</div></div></section>' % cells)
 
     if dm["models"]:
         rows = []
@@ -246,9 +268,7 @@ def build_domain(dm):
     partners_here = [p for p in PARTNERS if dm["slug"] in p["domains"]]
     pblock = ""
     if partners_here:
-        pwall = "".join('<a href="%s"><span class="lw-c">%s</span><span class="lw-name">%s</span></a>'
-                        % (url(d, "partners/" + p["slug"]), p["country"], p["name"])
-                        for p in partners_here)
+        pwall = logo_wall(d, partners_here)
         pblock = """
 <section class="section">
   <div class="wrap">
@@ -256,7 +276,7 @@ def build_domain(dm):
       <h2 class="rule-h">Named, current and contractual.</h2>
       <p class="lede">Each relationship carries a documented authorisation and a factory-level support
         route. Country of origin is published because it determines the export licensing path.</p></div>
-    <div class="logowall">%s</div>
+    %s
   </div>
 </section>""" % pwall
 
@@ -296,6 +316,7 @@ def build_domain(dm):
   </div>
 </section>
 %s
+%s
 <section class="section">
   <div class="wrap"><div class="split" style="border:1px solid var(--line-soft);border-radius:2px">
     <div class="split-body">
@@ -309,7 +330,7 @@ def build_domain(dm):
     <div class="split-media"><img src="%sassets/img/dom-c3.jpg" alt="" loading="lazy"></div>
   </div></div>
 </section>
-""" % (dm["hero"], overview, restricted, glance, len(dm["families"]), fams, models_block,
+""" % (dm["hero"], overview, restricted, glance, len(dm["families"]), fams, feat_block, models_block,
        STANDING["integration"],
        ", ".join(x["short"] for x in rel_doms),
        "".join('<a class="chip" href="%s">%s</a>' % (url(d, "capabilities/" + x["slug"]), x["short"])

@@ -219,6 +219,10 @@ def build_partner(p):
         note = ('<div class="note" style="margin-top:30px;max-width:760px">'
                 '<h4>Why this relationship matters</h4><p>%s</p></div>' % p["note"])
     parent = ('<dt>Group</dt><dd>%s</dd>' % p["parent"]) if p.get("parent") else ""
+    mark = ""
+    if p["slug"] in PARTNER_LOGOS:
+        mark = ('<div class="partner-mark"><img src="%sassets/img/partners/%s.png" alt="%s" '
+                'width="420" height="200"></div>' % (rel(d), p["slug"], p["name"]))
 
     body = (
         hero(d, doms[0]["img"] if doms else "partners-band", "Partner profile", p["name"],
@@ -239,6 +243,7 @@ def build_partner(p):
       %s
     </div>
     <div>
+      %s
       <dl class="kv">
         <dt>Full legal name</dt><dd>%s</dd>
         <dt>Country of origin</dt><dd>%s</dd>
@@ -271,7 +276,7 @@ def build_partner(p):
     </div>
   </div></div>
 </section>
-""" % (p["supplies"], note, p["name"], p["country"], p["region"], p["group"], parent,
+""" % (p["supplies"], note, mark, p["name"], p["country"], p["region"], p["group"], parent,
        cards, STANDING["support"], url(d, "contact/request-for-information"), url(d, "partners")))
 
     page("partners/%s/index.html" % p["slug"], "%s | Partner Profile | Maalik" % p["name"][:44],

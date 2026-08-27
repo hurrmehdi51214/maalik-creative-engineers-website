@@ -164,7 +164,26 @@ Add server-side validation, virus scanning on the 25 MB upload, and a CAPTCHA th
 not obstruct legitimate users. Then honour the published commitment: every enquiry
 acknowledged within one working day.
 
-### 3. Commission the photography
+### 3. Clear the manufacturer imagery you now hold
+
+`assets/img/partners/` holds 15 manufacturer marks and `assets/img/products/` holds 20
+product plates, pulled from the manufacturers' own sites (dti.com.pk, hytera.com,
+trilliuminfosec.com, rapidev.com, shibli.com).
+
+Trademarks are reproduced **unaltered** — trimmed and seated on a neutral tile, never
+recoloured or knocked out. Product shots are cut from their original backgrounds and
+re-seated on one studio plate so the catalogue reads as a single shoot; the products
+themselves are not retouched.
+
+Section 10.2 still applies to every one of them: confirm in writing that the manufacturer
+permits marketing use of its logo and product photography before this goes public. A
+manufacturer with no cleared logo simply falls back to a typeset name in the wall, which
+is the safe default — seven of the 22 entries sit that way today.
+
+Nothing showing identifiable personnel was used, per Section 7.4. Two Hytera plates were
+discarded for that reason during selection.
+
+### 4. Commission your own photography
 
 This is the highest-return item in the whole project, and Section 7.1 is right about it.
 The images currently in `assets/img/` are licence-free environmental, industrial and
@@ -188,7 +207,7 @@ plate** rather than a repeated photograph or an invented product render. Each pl
 deterministic and unique to its family. Swap them for real product shots as the asset
 library fills.
 
-### 4. Clear the partner directory
+### 5. Clear the partner directory
 
 Section 6 and Section 10.2 are unambiguous and this is a legal matter, not a design one.
 For every one of the 22 partner entries, confirm in writing: that a current relationship
@@ -201,7 +220,7 @@ safe default. Add logos only where written permission is held. Every profile car
 `[insert approved designation]` field for the relationship wording — fill it with the
 manufacturer's approved language and nothing more.
 
-### 5. Build the controlled datasheet workflow
+### 6. Build the controlled datasheet workflow
 
 The Downloads page publishes the corporate documents openly and gates technical detail
 behind a verified request, as Section 4.3 requires. The request form needs a back end that
