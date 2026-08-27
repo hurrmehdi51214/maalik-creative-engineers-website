@@ -1,0 +1,19 @@
+# Python bytecode from the site generator
+__pycache__/
+*.py[cod]
+
+# Temporary file used only by the screenshot helper
+_shot.html
+_shot*.html
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Never commit credentials
+*.env
+.env*
+*token*.txt
