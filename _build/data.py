@@ -10,17 +10,19 @@ COMPANY = {
     "legal": "Maalik Creative Engineers (Private) Limited",
     "established": "2010",
     "reg_line": "Maalik Creative Engineers (Private) Limited. Established 2010. Registered in Pakistan.",
-    "reg_no": "[insert company registration number]",
-    "ntn": "[insert National Tax Number]",
-    "address": ["[insert head office address line 1]", "[insert address line 2]", "Islamabad, Pakistan"],
-    "tel": "+92 [insert direct telephone]",
-    "email_general": "[insert monitored general address]",
-    "email_tender": "[insert tender and RFI address]",
-    "email_partner": "[insert partnership address]",
-    "email_support": "[insert support address]",
+    "strn": "32277876222068",
+    "ntn": "3395905-6",
+    "address": ["Office 4-10, 3rd Floor, Al Babar Center",
+                "F-8 Markaz",
+                "Islamabad, Pakistan"],
+    "tel": "+92-51-2204040",
+    "mobile": "+92 300 8612572",
+    "email": "info@maaliksoft.com",
     "hours": "Monday to Friday, 0900 to 1730 Pakistan Standard Time (UTC+5)",
     "linkedin": "#",
+    "maps_q": "Al Babar Center, F-8 Markaz, Islamabad, Pakistan",
 }
+
 
 # Section 1.2 -- approved descriptors
 DESCRIPTORS = {
@@ -68,7 +70,7 @@ STANDING = {
     "procurement": "We prepare offers that are complete, compliant and easy to evaluate. That means correct "
                    "documentation, accurate costing, clear technical compliance statements and a submission "
                    "that will not be set aside on a technicality.",
-    "confidentiality": "Details of individual programmes, including scope, quantities and customer identity, "
+    "confidentiality": "Details of individual programs, including scope, quantities and customer identity, "
                        "are held in confidence. Further information is available to qualified enquirers on "
                        "request, subject to customer clearance.",
 }
@@ -78,7 +80,7 @@ PILLARS = [
     ("Access", "A vetted global manufacturing base",
      "Named OEM relationships across Asia, Europe and North America. Direct factory access rather than "
      "layered brokerage, with principal-to-principal engagement and factory acceptance testing arranged "
-     "where a programme requires it.", "01"),
+     "where a program requires it.", "01"),
     ("Integration", "Systems, not shipments",
      "In-house engineering that integrates sensors, communications, command and control and analytics from "
      "multiple manufacturers into one working chain, with system architecture and design held in-house.", "02"),
@@ -365,7 +367,7 @@ DOMAINS = [
             "We supply across the layers: high to medium altitude area systems, low to medium altitude point "
             "and area systems, pedestal mounted short range systems for vehicle and static use, "
             "shoulder-launched very short range systems, and shipborne point and area defence.",
-            "We also establish the depot maintenance facilities and life extension programmes that keep an "
+            "We also establish the depot maintenance facilities and life extension programs that keep an "
             "air defence inventory available rather than nominally held.",
         ],
         "glance": ["Very short range", "Short to medium range", "Medium altitude area", "Shipborne"],
@@ -376,7 +378,7 @@ DOMAINS = [
             ("Man portable air defence systems", "Shoulder-launched very short range air defence systems.", "FP"),
             ("Shipborne air defence missile systems", "Naval point and area air defence systems.", "FP"),
             ("Air defence maintenance and depot facilities", "Establishment of in-country maintenance centres for air defence systems.", "FP"),
-            ("Missile life extension programmes", "Inspection, refurbishment, component replacement and service life extension of in-service missiles.", "FP"),
+            ("Missile life extension programs", "Inspection, refurbishment, component replacement and service life extension of in-service missiles.", "FP"),
         ],
         "models": [],
         "related": ["intelligence-surveillance-reconnaissance", "unmanned-systems-counter-uas", "weapon-systems-munitions"],
@@ -452,11 +454,11 @@ DOMAINS = [
         "n": "08", "slug": "avionics-aerospace",
         "name": "Avionics and Aerospace", "short": "Avionics &amp; Aerospace",
         "nav": "Avionics and Aerospace",
-        "def": "Airborne mission systems, displays, computers, and space and satellite programmes.",
+        "def": "Airborne mission systems, displays, computers, and space and satellite programs.",
         "hero": "The mission systems, displays and computing that make an airframe a capability.",
         "img": "dom-avionics", "icon": "avionics",
         "meta_title": "Avionics, Mission Systems and Space | Maalik",
-        "meta_desc": "Mission computers, cockpit displays, airborne communications, early warning systems and satellite and space programmes.",
+        "meta_desc": "Mission computers, cockpit displays, airborne communications, early warning systems and satellite and space programs.",
         "overview": [
             "An airframe is a platform. What makes it a capability is the mission system inside it, and what "
             "keeps it a capability is the spares and component support behind that system.",
@@ -466,7 +468,7 @@ DOMAINS = [
             "It also covers airborne early warning and control mission systems, integrated radar and "
             "avionics suites for combat aircraft with spares provisioning, line replaceable unit support, "
             "and satellite systems with their associated ground segment, including support to national "
-            "space programmes.",
+            "space programs.",
         ],
         "glance": ["Mission computing", "Cockpit displays", "Airborne comms", "Space and ground segment"],
         "families": [
@@ -481,7 +483,7 @@ DOMAINS = [
             ("Communication control systems", "Airborne communication control and management units.", "FP"),
             ("Airborne early warning and control systems", "AEW&amp;C mission systems and associated support.", "FP"),
             ("Airborne radars and avionics suites", "Integrated radar and avionics suites for combat aircraft, with support and spares provisioning.", "FP"),
-            ("Satellites and space systems", "Satellite systems and ground segment, including support to national space programmes.", "FP"),
+            ("Satellites and space systems", "Satellite systems and ground segment, including support to national space programs.", "FP"),
         ],
         "models": [("Avionics spares and components", "Line replaceable units, components and spares support for in-service avionics", "CP")],
         "related": ["intelligence-surveillance-reconnaissance", "electronic-warfare", "platforms-vehicles"],
@@ -530,7 +532,7 @@ DOMAINS = [
         "meta_desc": "Security assessment, managed security operations, red teaming, GRC, digital forensics and incident response.",
         "overview": [
             "Assume the network is already contested. That is the position every serious information "
-            "assurance programme starts from, and it changes what you buy: less perimeter, more detection, "
+            "assurance program starts from, and it changes what you buy: less perimeter, more detection, "
             "response and recovery.",
             "This is a services-led domain. We deliver black-box, grey-box and white-box assessment across "
             "applications, network infrastructure and databases; managed security operations from an "
@@ -553,7 +555,7 @@ DOMAINS = [
             ("Secure configuration review", "Configuration review of network devices, databases and operating systems, plus architecture review.", "FP"),
             ("Compliance assessment", "Compliance audits and reporting against ISO 27001, PCI DSS and NIST frameworks.", "FP"),
             ("Email phishing simulation service", "Simulated phishing campaigns measuring and improving workforce response to malicious email.", "FP"),
-            ("Security awareness portfolio", "Structured programme for building organisational security culture, with curricula and campaign material.", "FP"),
+            ("Security awareness portfolio", "Structured program for building organisational security culture, with curricula and campaign material.", "FP"),
             ("Security information and event management", "Enterprise-wide monitoring platform enabling detection and response across the full infrastructure.", "FP"),
             ("Deception platform", "Decoy deployment and monitoring, breach identification and full forensic capture of adversary TTPs.", "FP"),
             ("Threat intelligence platform", "Aggregation and integration of multiple threat feeds to support intelligence-driven decisions.", "FP"),
@@ -585,7 +587,7 @@ DOMAINS = [
         "families": [
             ("Reputation and information environment monitoring", "AI-assisted monitoring and management of an organisation's public information environment.", "FP"),
             ("Computer vision", "Applied computer vision for detection, classification and tracking across imagery and video.", "FP"),
-            ("Big data analytics", "Large-scale data engineering and analytics for national and institutional programmes.", "FP"),
+            ("Big data analytics", "Large-scale data engineering and analytics for national and institutional programs.", "FP"),
             ("National security picture and intelligence fusion", "Consolidated national-level operational picture assembled from multiple institutional data sources.", "FP"),
             ("Event, incident and information flow management", "Workflow platform for managing incidents and the flow of information between agencies.", "FP"),
         ],
@@ -667,14 +669,14 @@ SECTORS = [
      "context": "Naval requirements are shaped by the platform refit cycle and by an environment that is "
                 "corrosive to everything installed in it. Sensing must work across surface search, coastal "
                 "surveillance and sub-surface detection simultaneously, and the electronic support picture "
-                "must be current. Maintenance windows are fixed by the dockyard programme, not by the "
+                "must be current. Maintenance windows are fixed by the dockyard program, not by the "
                 "equipment, which makes availability planning a design consideration.",
      "domains": ["intelligence-surveillance-reconnaissance", "electronic-warfare", "weapon-systems-munitions",
                  "platforms-vehicles", "command-control-communications"],
      "focus": "Maritime radar, sonar and underwater surveillance, shipborne air defence, marine thermal "
               "systems, underwater countermeasures, and vessels and craft.",
      "support": "Shipborne systems are supported on dockyard-compatible maintenance cycles, with spares "
-                "provisioning aligned to the refit programme and repair capability held where the platform "
+                "provisioning aligned to the refit program and repair capability held where the platform "
                 "is based rather than where the manufacturer sits."},
     {"slug": "air-and-space", "name": "Air and Space", "img": "sector-air",
      "line": "Mission systems, airborne sensing and space segment for the air and space domain.",
@@ -686,7 +688,7 @@ SECTORS = [
      "domains": ["avionics-aerospace", "intelligence-surveillance-reconnaissance", "electronic-warfare",
                  "unmanned-systems-counter-uas"],
      "focus": "Airborne radar, mission computers and displays, reconnaissance pods, airborne early warning, "
-              "airborne electronic warfare, and satellite and space programmes.",
+              "airborne electronic warfare, and satellite and space programs.",
      "support": "Airborne systems are supported through line replaceable unit pools, obsolescence management "
                 "for long-life avionics, and manufacturer-backed repair routes with documented turnaround "
                 "commitments."},
@@ -755,14 +757,14 @@ SERVICES = [
     {"slug": "procurement-contract-management", "name": "Procurement and Contract Management", "img": "svc-procurement",
      "key": "A submission that is complete, compliant and easy to evaluate.",
      "why": "A technically superior offer that is set aside on a documentation technicality has cost the "
-            "customer the capability and the manufacturer the programme. Procurement fluency is not "
+            "customer the capability and the manufacturer the program. Procurement fluency is not "
             "administration, it is the mechanism by which good engineering reaches the user.",
      "what": ["Technical and operational assessment of a requirement against manufacturer capability",
               "Cost build-up and assistance with project costing",
               "Identification of suitable local partners and sub-contractors",
               "Complete support through the bid evaluation phase",
               "Contract administration from award to closure",
-              "Deployment of qualified project managers to run a programme on the manufacturer's behalf"],
+              "Deployment of qualified project managers to run a program on the manufacturer's behalf"],
      "how": "We work to the applicable public procurement framework and to your tender conditions, with "
             "documentation discipline applied as a process rather than as a final check.",
      "receive": "Error-free submissions, accurate costing, clear technical compliance statements, and a "
@@ -784,7 +786,7 @@ SERVICES = [
             "closed by commissioning done properly and by training that reaches the people who will actually "
             "use and maintain the system.",
      "what": ["Site survey", "Installation", "Commissioning", "Integration testing", "Operator training",
-              "Maintainer training", "Train-the-trainer programmes",
+              "Maintainer training", "Train-the-trainer programs",
               "Documentation packages in English"],
      "how": "Training is delivered against the tasks the operator will actually perform, and maintainer "
             "training is scoped to the fault levels the unit is expected to resolve itself.",
@@ -796,7 +798,7 @@ SERVICES = [
             "by its purchase price. A cheaper system with no spares route is the more expensive procurement.",
      "what": ["Warranty service", "Post-warranty service contracts",
               "Scheduled and unscheduled maintenance", "Spares provisioning and management",
-              "Depot level repair facilities", "Overhaul programmes", "Obsolescence management",
+              "Depot level repair facilities", "Overhaul programs", "Obsolescence management",
               "Life extension of in-service systems"],
      "how": "Support is structured before delivery, not after the first failure. Initial provisioning is "
             "sized against the expected usage profile and reviewed against actual consumption.",
@@ -842,7 +844,7 @@ SIMULATION = [
     ("Artillery observer simulators", "Forward observer training simulators for target acquisition and fire correction."),
     ("Aerial target systems", "Aerial targets and target drones for live-fire training and system qualification."),
     ("Underwater target systems", "Underwater targets for anti-submarine and torpedo training."),
-    ("Security professional training", "Structured training and certification programmes for security and technical personnel."),
+    ("Security professional training", "Structured training and certification programs for security and technical personnel."),
 ]
 
 TRADING = [
@@ -898,7 +900,7 @@ PARTNERS = [
      "group": "Communications and critical communications", "parent": "Part of the Hytera group",
      "domains": ["command-control-communications"],
      "supplies": "Satellite terminals, satellite components and satellite network solutions."},
-    {"slug": "sinctech", "name": "SINCTech", "country": "Canada", "region": "North America",
+    {"slug": "sinctech", "name": "SINCTech (Sinclair Technologies)", "country": "Canada", "region": "North America",
      "group": "Communications and critical communications", "parent": "Part of the Hytera group",
      "domains": ["command-control-communications"],
      "supplies": "Base station antennas, transmitter combiners and RF signal conditioning."},
@@ -906,7 +908,7 @@ PARTNERS = [
      "group": "Communications and critical communications", "parent": "Part of the Hytera group",
      "domains": ["command-control-communications"],
      "supplies": "Smart communication solutions."},
-    {"slug": "optronics-manufacturer-islamabad", "name": "Regional thermal imaging manufacturer, Islamabad",
+    {"slug": "optronics-manufacturer-islamabad", "name": "Shibli Electronics",
      "country": "Pakistan", "region": "Pakistan", "group": "Optronics and thermal imaging", "featured": True,
      "domains": ["electro-optics-night-vision", "unmanned-systems-counter-uas",
                  "intelligence-surveillance-reconnaissance"],
@@ -916,7 +918,7 @@ PARTNERS = [
                  "including jamming, vehicle driver night sights, marine thermal systems, portable command "
                  "and control units, unmanned aerial systems including loitering, ISR and FPV platforms, "
                  "and optronic accessories.",
-     "note": "This manufacturer is the source of the FALCON, SKUA, GUARDIAN, TARSIER, ORCA, ERMINE, "
+     "note": "Shibli is the source of the FALCON, SKUA, GUARDIAN, TARSIER, ORCA, ERMINE, "
              "TERRIER, Nightrider, See King, SkyGuard and SKYSTRYX product families. Because it is a "
              "Pakistani manufacturer, the relationship shortens support lines and removes the export "
              "licensing step. Manufacturing facility on Fateh Jang Road with a corporate office in Islamabad."},
@@ -964,23 +966,18 @@ PARTNERS = [
      "domains": ["safe-city-critical-infrastructure"],
      "supplies": "High-security paper, holographic solutions and smart card components. Operating since "
                  "2005, supplying end-to-end secure document and credential manufacturing."},
-    {"slug": "rds", "name": "RDS", "country": "Pakistan", "region": "Pakistan",
+    {"slug": "rds", "name": "REDtone Digital Services (Private) Limited", "country": "Pakistan", "region": "Pakistan",
      "group": "Communications and critical communications",
      "domains": ["command-control-communications", "safe-city-critical-infrastructure"],
      "supplies": "Managed connectivity and ICT services: enterprise internet, secure network design and "
                  "integration, data centre and managed service delivery across Pakistan.",
-     "note": "Offices in Islamabad, Lahore and Karachi. [Confirm the full registered company name and "
-             "registration number before publication.]"},
+     "note": "Offices in Islamabad, Lahore and Karachi."},
     {"slug": "everbridge", "name": "Everbridge, Inc.", "country": "United States",
      "region": "North America", "group": "Safe city, identity and commercial systems",
      "domains": ["safe-city-critical-infrastructure", "command-control-communications"],
      "supplies": "Critical event management and mass notification: public warning, emergency "
                  "communication and business continuity platforms for government and enterprise."},
-    {"slug": "sustainable-technology-unit", "name": "Sustainable technology and energy unit",
-     "country": "Pakistan", "region": "Pakistan", "group": "AI and digital intelligence",
-     "domains": ["safe-city-critical-infrastructure"],
-     "supplies": "Energy efficiency, climate monitoring and resource optimisation."},
-]
+    ]
 
 # Logos held on file. A manufacturer with no entry here is listed as text only,
 # which is the safe default under Section 10.2 until written permission exists.
@@ -1013,6 +1010,20 @@ FEATURED = {
     ],
 }
 
+# Section 6: the exact designation each manufacturer permits.
+AUTHORISED_REPRESENTATIVE = {
+    "sunmi", "asy-anti-forgery", "everbridge", "genuine-printing",
+    "optronics-manufacturer-islamabad", "rds",
+}
+
+
+def designation(slug):
+    """What we are permitted to call the relationship."""
+    if slug in AUTHORISED_REPRESENTATIVE:
+        return "Authorised representative"
+    return "Authorised distributor and technology partner"
+
+
 PARTNER_GROUPS = ["Defence systems and platforms", "Communications and critical communications",
                   "Optronics and thermal imaging", "Cyber security", "AI and digital intelligence",
                   "Safe city, identity and commercial systems"]
@@ -1020,41 +1031,33 @@ PARTNER_REGIONS = ["China", "Europe", "North America", "Russia and Central Asia"
 
 # --------------------------------------------------------------------------- Section 4.9.3
 PROGRAMMES = [
-    ("Simulation and training systems", "Delivery and support of full mission, platform crew and gunnery "
+    ("Simulation and training systems", "2012 to date", "Delivery and support of full mission, platform crew and gunnery "
      "simulation across service branches, including artillery gun and forward observer trainers."),
-    ("Thermal imaging and optronics", "Supply of handheld, weapon-mounted and fixed surveillance optronics, "
+    ("Thermal imaging and optronics", "2013 to date", "Supply of handheld, weapon-mounted and fixed surveillance optronics, "
      "including transfer of technology arrangements supporting local co-production."),
-    ("Unmanned aerial systems", "Supply of tactical and reconnaissance unmanned systems and their payloads, "
+    ("Unmanned aerial systems", "2017 to date", "Supply of tactical and reconnaissance unmanned systems and their payloads, "
      "including co-production arrangements."),
-    ("Airborne early warning and control", "Mission system supply and associated through-life support."),
-    ("Artillery and counter-battery radar", "Weapon locating radar supply supporting counter-battery and "
+    ("Airborne early warning and control", "2014 to 2021", "Mission system supply and associated through-life support."),
+    ("Artillery and counter-battery radar", "2013 to 2019", "Weapon locating radar supply supporting counter-battery and "
      "fire correction capability."),
-    ("Airborne radar and avionics suites", "Integrated radar and avionics suite supply for combat aircraft, "
+    ("Airborne radar and avionics suites", "2015 to date", "Integrated radar and avionics suite supply for combat aircraft, "
      "with spares provisioning and component support."),
-    ("Layered air defence", "Supply across the air defence architecture, from man-portable systems to "
+    ("Layered air defence", "2011 to date", "Supply across the air defence architecture, from man-portable systems to "
      "medium altitude area defence."),
-    ("Naval craft and support vessels", "Supply of patrol, attack and harbour support craft to customer "
+    ("Naval craft and support vessels", "2016 to 2022", "Supply of patrol, attack and harbour support craft to customer "
      "specification."),
-    ("Small arms and personal weapons", "Service pistols, rifles and support weapons for armed forces and "
+    ("Small arms and personal weapons", "2011 to date", "Service pistols, rifles and support weapons for armed forces and "
      "law enforcement, with ammunition and accessory provisioning."),
-    ("Laser aiming and observation devices", "Weapon-mounted aiming modules and handheld observation "
+    ("Laser aiming and observation devices", "2012 to date", "Weapon-mounted aiming modules and handheld observation "
      "equipment across service branches."),
-    ("Maintenance and depot facilities", "Establishment of in-country maintenance and depot facilities for "
+    ("Maintenance and depot facilities", "2018 to date", "Establishment of in-country maintenance and depot facilities for "
      "air defence and artillery systems."),
-    ("Missile life extension", "Inspection, refurbishment, component replacement and service life extension "
+    ("Missile life extension", "2019 to date", "Inspection, refurbishment, component replacement and service life extension "
      "of in-service missile inventory."),
-    ("Space and satellite programmes", "Satellite system and ground segment supply, including support to "
-     "national space programme establishment."),
+    ("Space and satellite programs", "2015 to date", "Satellite system and ground segment supply, including support to "
+     "national space program establishment."),
 ]
 
-CERTIFICATIONS = [
-    ("Quality management", "[insert certification, certifying body and scope]", "Company"),
-    ("Information security management", "[insert certification, certifying body and scope]", "Company or delivery partner"),
-    ("Environmental management", "[insert certification, certifying body and scope]", "Delivery partner"),
-    ("Capability maturity assessment", "[insert assessment level and assessing body]", "Delivery partner"),
-    ("Sector registrations", "Pakistan Software Export Board registration; Pakistan Telecommunication "
-     "Authority registration. [confirm current status and certificate numbers]", "Company"),
-]
 
 # --------------------------------------------------------------------------- Section 4.10
 BRIEF_TOPICS = [
@@ -1074,7 +1077,7 @@ BRIEF_TOPICS = [
 
 DISCIPLINES = [
     "Systems engineering", "RF and communications engineering", "Optronics",
-    "Software and AI engineering", "Cyber security", "Project and programme management",
+    "Software and AI engineering", "Cyber security", "Project and program management",
     "Field service engineering", "Procurement and contracts", "Logistics",
 ]
 

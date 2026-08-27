@@ -163,8 +163,8 @@ def mobile_nav(depth):
                                   ("Become a Partner", url(depth, "partners/become-a-partner"))]))
     acc.append(block("About", [("Company", url(depth, "about")),
                                ("Leadership", url(depth, "about/leadership")),
-                               ("Programmes and Track Record", url(depth, "about/programmes")),
-                               ("Quality and Compliance", url(depth, "about/quality")),
+                               ("Programs and Track Record", url(depth, "about/programs")),
+                               ("Compliance", url(depth, "about/quality")),
                                ("Facilities", url(depth, "about/facilities"))]))
     acc.append(block("More", [("Insights", url(depth, "insights")), ("Careers", url(depth, "careers")),
                               ("Downloads", url(depth, "downloads")), ("Search", url(depth, "search"))]))
@@ -188,8 +188,8 @@ def footer(depth):
                    for d in DOMAINS)
     caps += '<li><a href="%s">Beyond the Catalogue</a></li>' % url(depth, "capabilities/beyond-the-catalogue")
     company = [("About", "about"), ("Leadership", "about/leadership"),
-               ("Programmes and Track Record", "about/programmes"),
-               ("Quality and Compliance", "about/quality"), ("Facilities", "about/facilities"),
+               ("Programs and Track Record", "about/programs"),
+               ("Compliance", "about/quality"), ("Facilities", "about/facilities"),
                ("Insights", "insights"), ("Careers", "careers")]
     engage = [("General Enquiry", "contact"), ("Request for Information", "contact/request-for-information"),
               ("Partnership Enquiry", "contact/partnership"), ("Support Request", "contact/support"),
@@ -208,7 +208,7 @@ def footer(depth):
         <img class="logo-dark" src="%sassets/logo/stacked.png" alt="Maalik Creative Engineers">
         <img class="logo-light" src="%sassets/logo/stacked-light.png" alt="" aria-hidden="true">
         <p>%s</p>
-        <div class="foot-reg">%s<br>Registration number: %s<br>NTN: %s</div>
+        <div class="foot-reg">%s<br>STRN: %s<br>NTN: %s</div>
       </div>
       <div class="foot-col"><h4>Capabilities</h4><ul>%s</ul></div>
       <div class="foot-col"><h4>Company</h4><ul>%s</ul></div>
@@ -217,8 +217,8 @@ def footer(depth):
         <h4>Contact</h4>
         <p>%s</p>
         <p>%s<br>
-           <a href="mailto:%s">%s</a><br>
-           Tenders and RFI: <a href="mailto:%s">%s</a></p>
+           <a href="tel:%s">%s</a><br>
+           <a href="mailto:%s">%s</a></p>
         <p>%s</p>
         <p><a href="%s" rel="noopener">LinkedIn</a></p>
       </div>
@@ -228,11 +228,11 @@ def footer(depth):
     <span class="fb-copy">&copy; <span data-year></span> %s</span>%s
   </div></div>
 </footer>
-""" % (r, r, DESCRIPTORS["footer"], COMPANY["legal"], COMPANY["reg_no"], COMPANY["ntn"],
+""" % (r, r, DESCRIPTORS["footer"], COMPANY["legal"], COMPANY["strn"], COMPANY["ntn"],
        caps, co, en, "<br>".join(COMPANY["address"]),
        tel_html(),
-       COMPANY["email_general"], COMPANY["email_general"],
-       COMPANY["email_tender"], COMPANY["email_tender"],
+       COMPANY["mobile"].replace(" ", ""), COMPANY["mobile"],
+       COMPANY["email"], COMPANY["email"],
        COMPANY["hours"], COMPANY["linkedin"], COMPANY["legal"], lg)
 
 
@@ -270,10 +270,13 @@ def page(path, title, desc, body, active="", depth=None):
 %s
 %s
 <script src="%sassets/js/site.js" defer></script>
+%s
 </body>
 </html>
 """ % (title, desc, title, desc, r, r, r, r,
-       header(depth, active), body, footer(depth), mobile_nav(depth), r)
+       header(depth, active), body, footer(depth), mobile_nav(depth), r,
+       ('<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"'
+        ' async defer></script>' if 'data-form=' in body else ''))
     write(path, html)
 
 

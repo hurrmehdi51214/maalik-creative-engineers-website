@@ -896,3 +896,17 @@ html.theme-anim *::after{
 .pl-mark.is-text span{font-family:"Barlow Semi Condensed",sans-serif;text-transform:uppercase;
   letter-spacing:.08em;font-size:.9rem;color:var(--text-dim);text-align:center;line-height:1.3;
   padding:0 10px}
+
+/* form status + captcha */
+.form-status{font-size:.9rem;line-height:1.5;margin:0}
+.form-status.is-error{color:var(--red-hot);border-left:2px solid var(--red);padding-left:14px}
+.cf-turnstile{min-height:66px}
+.mapframe{position:relative;aspect-ratio:21/8;border:1px solid var(--line-soft);
+  border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+.mapframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0;
+  filter:grayscale(.35) contrast(1.02)}
+:root[data-theme="dark"] .mapframe iframe{filter:grayscale(.55) invert(.92) hue-rotate(180deg) contrast(.92)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]):not([data-theme="dark"]) .mapframe iframe{
+    filter:grayscale(.55) invert(.92) hue-rotate(180deg) contrast(.92)}
+}

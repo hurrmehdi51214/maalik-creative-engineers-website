@@ -9,7 +9,7 @@ def build_home():
     stats = [("15", "Years in operation since 2010"),
              ("12", "Capability domains covered"),
              ("20+", "International OEM and technology partners"),
-             ("13", "Programme categories delivered")]
+             ("13", "Program categories delivered")]
     stat_html = "".join(
         '<div class="stat"><div class="fig">%s</div><div class="lbl">%s</div></div>' % s for s in stats)
 
@@ -99,7 +99,7 @@ def build_home():
   <div class="wrap">
     <div class="sec-head"><p class="eyebrow">The delivery model</p>
       <h2 class="rule-h">From stated requirement to sustained capability.</h2>
-      <p class="lede">We think in programme terms, not transactional ones. Every requirement runs through
+      <p class="lede">We think in program terms, not transactional ones. Every requirement runs through
         the same six stages, with one accountable project manager across all of them.</p></div>
     <div class="rail">%s</div>
   </div>
@@ -324,7 +324,7 @@ def build_domain(dm):
       <h2 class="rule-h" style="font-size:1.85rem">This domain does not work alone.</h2>
       <p style="color:var(--text-dim)">%s</p>
       <p style="color:var(--text-dim);font-size:.95rem">Systems here connect most often to %s.
-        We design and deliver those connections as part of the same programme.</p>
+        We design and deliver those connections as part of the same program.</p>
       <div class="chips" style="margin-top:10px">%s</div>
     </div>
     <div class="split-media"><img src="%sassets/img/dom-c3.jpg" alt="" loading="lazy"></div>
@@ -379,7 +379,7 @@ def build_beyond():
         ("An obsolete sub-assembly on an in-service platform",
          "The original manufacturer had exited the line. We identified an adjacent manufacturer able to "
          "produce to the drawing, qualified the output and brought the item back into supply."),
-        ("A specialist material for a production programme",
+        ("A specialist material for a production program",
          "The requirement sat outside defence entirely. We located a qualified mill, established the "
          "export licensing position and structured the supply against the production schedule."),
     ]

@@ -152,17 +152,80 @@
     });
   });
 
-  /* ---- forms: no back end wired, confirm and preserve the enquiry ---- */
+  /* ---- forms -------------------------------------------------------
+     Everything posts to one serverless route, which verifies the captcha,
+     scans any attachment and delivers to info@maaliksoft.com. */
+  function fieldValues(form) {
+    var out = {};
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || el.type === 'file' || el.type === 'submit') return;
+      out[el.name] = el.value;
+    });
+    return out;
+  }
+
+  function readFile(input) {
+    return new Promise(function (resolve, reject) {
+      var f = input && input.files && input.files[0];
+      if (!f) return resolve(null);
+      if (f.size > 25 * 1024 * 1024) {
+        return reject(new Error('That file is over the 25 MB limit.'));
+      }
+      var r = new FileReader();
+      r.onload = function () { resolve({ name: f.name, data: r.result }); };
+      r.onerror = function () { reject(new Error('That file could not be read.')); };
+      r.readAsDataURL(f);
+    });
+  }
+
+  function setStatus(form, text, kind) {
+    var box = form.querySelector('[data-form-status]');
+    if (!box) return;
+    box.textContent = text || '';
+    box.className = 'form-status' + (kind ? ' is-' + kind : '');
+  }
+
   document.querySelectorAll('form[data-form]').forEach(function (f) {
     f.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!f.checkValidity()) { f.reportValidity(); return; }
-      var ok = f.parentElement.querySelector('.form-ok');
-      if (ok) {
-        ok.classList.add('show');
-        ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      f.reset();
+
+      var btn = f.querySelector('button[type=submit]');
+      var label = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = 'Sending&hellip;'; }
+      setStatus(f, '', '');
+
+      readFile(f.querySelector('input[type=file]')).then(function (file) {
+        var payload = fieldValues(f);
+        payload.route = f.getAttribute('data-form') || 'General enquiry';
+        payload.captcha_token =
+          (f.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
+        if (file) payload.file = file;
+        return fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }).then(function (res) {
+        return res.json().then(function (j) { return { ok: res.ok && j.ok, body: j }; });
+      }).then(function (r) {
+        if (btn) { btn.disabled = false; btn.innerHTML = label; }
+        if (window.turnstile) { try { window.turnstile.reset(); } catch (err) {} }
+        if (!r.ok) {
+          setStatus(f, r.body && r.body.error
+            ? r.body.error
+            : 'The message could not be sent. Email info@maaliksoft.com directly.', 'error');
+          return;
+        }
+        var ok = f.parentElement.querySelector('.form-ok');
+        if (ok) { ok.classList.add('show'); ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        f.reset();
+      }).catch(function (err) {
+        if (btn) { btn.disabled = false; btn.innerHTML = label; }
+        setStatus(f, err && err.message
+          ? err.message
+          : 'The message could not be sent. Email info@maaliksoft.com directly.', 'error');
+      });
     });
   });
 

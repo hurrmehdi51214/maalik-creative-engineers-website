@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Page builders: services, partners, about, insights, careers, contact, downloads, legal, system."""
 from build import *   # noqa
+from urllib.parse import quote_plus
 
 
 # =========================================================================== SERVICES
@@ -19,7 +20,7 @@ def build_services_index():
 
     body = (
         hero(d, "svc-mro", "Services", "The contract ends.<br>The support does not.",
-             "Seven services that turn a supply relationship into a programme relationship, from "
+             "Seven services that turn a supply relationship into a program relationship, from "
              "requirement definition through to life extension of equipment already in service.",
              [("Talk to our support team", url(d, "contact/support"), "btn-primary")], "short",
              crumb(d, [("Home", ""), ("Services", None)]))
@@ -27,9 +28,9 @@ def build_services_index():
 <section class="section">
   <div class="wrap">
     <div class="sec-head" style="max-width:840px"><p class="eyebrow">What we do</p>
-      <h2 class="rule-h">Seven services, one accountable programme.</h2>
+      <h2 class="rule-h">Seven services, one accountable program.</h2>
       <p class="lede">A customer does not want seven suppliers with seven contracts. Each of these is
-        delivered by us, under one contract, with one project manager who stays with the programme from
+        delivered by us, under one contract, with one project manager who stays with the program from
         requirement definition to disposal.</p></div>
     <div class="grid g3 gap-md">%s</div>
   </div>
@@ -57,7 +58,7 @@ def build_services_index():
 <section class="section ink2">
   <div class="wrap">
     <div class="sec-head" style="max-width:820px"><p class="eyebrow">Trading and technical services</p>
-      <h2 class="rule-h">Inputs to a production programme.</h2>
+      <h2 class="rule-h">Inputs to a production program.</h2>
       <p class="lede">Sourcing that supports manufacture rather than replacing it. Frequently the highest
         value thing we do for a strategic organisation.</p></div>
     <div class="tbl-wrap"><table class="spec">
@@ -255,8 +256,7 @@ def build_partner(p):
         <dt>Region</dt><dd>%s</dd>
         <dt>Category</dt><dd>%s</dd>
         %s
-        <dt>Relationship</dt><dd>[insert approved designation]</dd>
-        <dt>Year established</dt><dd>[insert year]</dd>
+        <dt>Relationship</dt><dd>%s</dd>
       </dl>
     </div>
   </div></div>
@@ -282,7 +282,8 @@ def build_partner(p):
   </div></div>
 </section>
 """ % (p["supplies"], note, mark, p["name"], p["country"], p["region"], p["group"], parent,
-       cards, STANDING["support"], url(d, "contact/request-for-information"), url(d, "partners")))
+       designation(p["slug"]), cards, STANDING["support"],
+       url(d, "contact/request-for-information"), url(d, "partners")))
 
     page("partners/%s/index.html" % p["slug"], "%s | Partner Profile | Maalik" % p["name"][:44],
          p["supplies"][:150], body, active="partners", depth=2)
@@ -297,8 +298,8 @@ def build_become_partner():
          "process and tendering practice."),
         ("An engineering base", "A Pakistani engineering and support base, so you do not need to "
          "establish one to compete."),
-        ("Programme management", "Contract and programme management run on your behalf, with qualified "
-         "project managers deployed to the programme."),
+        ("Program management", "Contract and program management run on your behalf, with qualified "
+         "project managers deployed to the program."),
         ("Local sustainment", "In-country warranty administration, spares holding and maintenance "
          "capability behind every delivery."),
         ("Bid phase support", "Support through technical evaluation and the bid phase, including "
@@ -382,12 +383,32 @@ def field(label, name, kind="text", required=False, hint="", options=None, ph=""
     return '<div class="field"><label for="%s">%s%s</label>%s%s</div>' % (name, label, req, inp, h)
 
 
-def form_wrap(inner, note, ok_title, ok_body):
-    return ("""<form class="form" data-form novalidate>%s
+# Paste the Cloudflare Turnstile site key here to switch the challenge on.
+# Left empty, the widget is not rendered and the API falls back to the
+# honeypot and rate limit alone.
+TURNSTILE_SITE_KEY = ""
+
+
+def turnstile_widget():
+    if not TURNSTILE_SITE_KEY:
+        return ""
+    return ('  <div class="cf-turnstile" data-sitekey="%s" data-theme="auto"></div>'
+            % TURNSTILE_SITE_KEY)
+
+
+def form_wrap(inner, note, ok_title, ok_body, route="General enquiry"):
+    return ("""<form class="form" data-form="%s" novalidate>%s
+  <div class="field" style="position:absolute;left:-9999px" aria-hidden="true">
+    <label for="company_website">Leave this field empty</label>
+    <input id="company_website" name="company_website" type="text" tabindex="-1" autocomplete="off">
+  </div>
+%s
   <p class="form-note">%s</p>
+  <p class="form-status" data-form-status role="status" aria-live="polite"></p>
   <button class="btn btn-primary" type="submit">Send enquiry <i class="arw"></i></button>
 </form>
-<div class="form-ok"><h4>%s</h4><p>%s</p></div>""" % (inner, note, ok_title, ok_body))
+<div class="form-ok"><h4>%s</h4><p>%s</p></div>""" % (route, inner, turnstile_widget(),
+                                                      note, ok_title, ok_body))
 
 
 PRIVACY_NOTE = ('Information submitted through this form is used only to respond to your enquiry and is '
@@ -404,7 +425,7 @@ def general_form(d):
                       ph="How can we help?")))
     return form_wrap(inner, PRIVACY_NOTE, "Enquiry received.",
                      "We acknowledge every enquiry within one working day. A member of the team will "
-                     "respond to the address you supplied.")
+                     "respond to the address you supplied.", route="General enquiry")
 
 
 def rfi_form(d):
@@ -429,7 +450,7 @@ def rfi_form(d):
     return form_wrap(inner, PRIVACY_NOTE,
                      "Requirement received by the bid and technical team.",
                      "We acknowledge every enquiry within one working day and will respond with a "
-                     "technical assessment and a route to source it.")
+                     "technical assessment and a route to source it.", route="RFI and tender")
 
 
 def partner_form(d):
@@ -446,8 +467,8 @@ def partner_form(d):
                 field("Message", "message", "textarea", required=True,
                       ph="Tell us about the product and what you are looking for in a representative.")))
     return form_wrap(inner, PRIVACY_NOTE, "Partnership enquiry received.",
-                     "This enquiry is routed to business development. We acknowledge every enquiry "
-                     "within one working day.")
+                     "We acknowledge every enquiry within one working day.",
+                     route="Partnership")
 
 
 def support_form(d):
@@ -463,8 +484,8 @@ def support_form(d):
                 field("Nature of the issue", "message", "textarea", required=True,
                       ph="Describe the fault or the support required.")))
     return form_wrap(inner, PRIVACY_NOTE, "Support request received.",
-                     "Your request has been routed to the service and support team. We acknowledge every "
-                     "request within one working day.")
+                     "We acknowledge every request within one working day.",
+                     route="Support")
 
 
 FORMS = {"": general_form, "request-for-information": rfi_form,
@@ -493,19 +514,16 @@ def build_contact(route):
     <div>
       <p class="eyebrow">%s</p>
       <h2 class="rule-h">Tell us the requirement.</h2>
-      <p style="color:var(--text-dim)">This form is routed to <strong style="color:var(--text)">%s</strong>.
-        Four routes exist so that your enquiry reaches the people who can answer it, rather than a
-        general inbox.</p>
+      <p style="color:var(--text-dim)">Tagged <strong style="color:var(--text)">%s</strong> so it reaches the right person.
+        Every enquiry arrives in one monitored inbox and is acknowledged within one working day.</p>
       <dl class="kv" style="margin-top:26px">
         <dt>Head office</dt><dd>%s</dd>
         <dt>Telephone</dt><dd>%s</dd>
-        <dt>General</dt><dd><a href="mailto:%s" style="color:var(--red-hot)">%s</a></dd>
-        <dt>Tenders and RFI</dt><dd><a href="mailto:%s" style="color:var(--red-hot)">%s</a></dd>
-        <dt>Partnership</dt><dd><a href="mailto:%s" style="color:var(--red-hot)">%s</a></dd>
-        <dt>Support</dt><dd><a href="mailto:%s" style="color:var(--red-hot)">%s</a></dd>
+        <dt>Mobile</dt><dd><a href="tel:%s" style="color:var(--red-hot)">%s</a></dd>
+        <dt>Email</dt><dd><a href="mailto:%s" style="color:var(--red-hot)">%s</a></dd>
         <dt>Office hours</dt><dd>%s</dd>
         <dt>Registered name</dt><dd>%s</dd>
-        <dt>Registration no.</dt><dd>%s</dd>
+        <dt>STRN</dt><dd>%s</dd>
       </dl>
       <div class="note" style="margin-top:30px">
         <h4>Response commitment</h4>
@@ -519,27 +537,32 @@ def build_contact(route):
 <section class="section ink2">
   <div class="wrap">
     <div class="sec-head"><p class="eyebrow">Other routes</p>
-      <h2 class="rule-h">Four visitor types, four inboxes.</h2></div>
+      <h2 class="rule-h">Four routes, one monitored inbox.</h2></div>
     <div class="grid g3 gap-md">%s</div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">Location</p><h2 class="rule-h">Head office.</h2></div>
-    <div class="plate" style="aspect-ratio:21/7">
-      <div class="pl-desig">%s<small>Embedded map to be added at launch with the verified head office address</small></div>
+    <div class="sec-head"><p class="eyebrow">Location</p><h2 class="rule-h">Head office.</h2>
+      <p class="lede">%s</p></div>
+    <div class="mapframe">
+      <iframe title="Map showing the Maalik Creative Engineers head office"
+        src="https://www.google.com/maps?q=%s&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
+    <p class="mono" style="color:var(--text-faint);margin-top:16px">
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=%s" rel="noopener"
+         style="color:var(--red-hot)">Open in Google Maps</a></p>
   </div>
 </section>
 """ % (route["eyebrow"], route["to"], "<br>".join(COMPANY["address"]),
        tel_html(),
-       COMPANY["email_general"], COMPANY["email_general"],
-       COMPANY["email_tender"], COMPANY["email_tender"],
-       COMPANY["email_partner"], COMPANY["email_partner"],
-       COMPANY["email_support"], COMPANY["email_support"],
-       COMPANY["hours"], COMPANY["legal"], COMPANY["reg_no"],
-       FORMS[route["slug"]](d), ocards, ", ".join(COMPANY["address"])))
+       COMPANY["mobile"].replace(" ", ""), COMPANY["mobile"],
+       COMPANY["email"], COMPANY["email"],
+       COMPANY["hours"], COMPANY["legal"], COMPANY["strn"],
+       FORMS[route["slug"]](d), ocards, ", ".join(COMPANY["address"]),
+       quote_plus(", ".join(COMPANY["address"])), quote_plus(", ".join(COMPANY["address"]))))
 
     path = "contact/index.html" if not route["slug"] else "contact/%s/index.html" % route["slug"]
     title = ("Contact and Requirement Submission | Maalik" if not route["slug"]
