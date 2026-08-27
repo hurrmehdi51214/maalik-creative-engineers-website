@@ -948,6 +948,34 @@ PARTNERS = [
      "note": "Operates specialist units covering AI intelligence products, secure communications research "
              "and development, public safety and safe city solutions, and climate and energy technology. "
              "Holds ISO 9001 and ISO 14001 certifications and a capability maturity model assessment."},
+    {"slug": "sunmi", "name": "SUNMI Technology Co., Ltd.", "country": "China", "region": "China",
+     "group": "Safe city, identity and commercial systems",
+     "domains": ["safe-city-critical-infrastructure", "artificial-intelligence-digital-intelligence"],
+     "supplies": "Business IoT terminals: rugged Android handhelds, point-of-sale and self-service "
+                 "terminals, printers and connected devices for retail, logistics and public service "
+                 "deployments."},
+    {"slug": "asy-anti-forgery", "name": "Shenzhen ASY Anti-forgery Technology Development Co., Ltd.",
+     "country": "China", "region": "China", "group": "Safe city, identity and commercial systems",
+     "domains": ["safe-city-critical-infrastructure"],
+     "supplies": "Integrated anti-counterfeiting solutions: security labels and seals, track and trace "
+                 "systems, and authentication technology for documents, credentials and controlled goods."},
+    {"slug": "genuine-printing", "name": "Genuine Printing", "country": "China", "region": "China",
+     "group": "Safe city, identity and commercial systems",
+     "domains": ["safe-city-critical-infrastructure"],
+     "supplies": "High-security paper, holographic solutions and smart card components. Operating since "
+                 "2005, supplying end-to-end secure document and credential manufacturing."},
+    {"slug": "rds", "name": "RDS", "country": "Pakistan", "region": "Pakistan",
+     "group": "Communications and critical communications",
+     "domains": ["command-control-communications", "safe-city-critical-infrastructure"],
+     "supplies": "Managed connectivity and ICT services: enterprise internet, secure network design and "
+                 "integration, data centre and managed service delivery across Pakistan.",
+     "note": "Offices in Islamabad, Lahore and Karachi. [Confirm the full registered company name and "
+             "registration number before publication.]"},
+    {"slug": "everbridge", "name": "Everbridge, Inc.", "country": "United States",
+     "region": "North America", "group": "Safe city, identity and commercial systems",
+     "domains": ["safe-city-critical-infrastructure", "command-control-communications"],
+     "supplies": "Critical event management and mass notification: public warning, emergency "
+                 "communication and business continuity platforms for government and enterprise."},
     {"slug": "sustainable-technology-unit", "name": "Sustainable technology and energy unit",
      "country": "Pakistan", "region": "Pakistan", "group": "AI and digital intelligence",
      "domains": ["safe-city-critical-infrastructure"],
@@ -956,12 +984,6 @@ PARTNERS = [
 
 # Logos held on file. A manufacturer with no entry here is listed as text only,
 # which is the safe default under Section 10.2 until written permission exists.
-PARTNER_LOGOS = {
-    "aerospace-long-march", "aviaexport", "beretta", "cetc-international",
-    "newcon-optik", "samkwang", "star-vision", "steiner-eoptics", "unique-alpine",
-    "hytera", "kaspersky", "forcepoint", "cyber-delivery-partner",
-    "ai-digital-intelligence-group", "optronics-manufacturer-islamabad",
-}
 
 # Manufacturer product photography, mapped to the family it illustrates.
 # domain slug -> {family index: image stem in assets/img/products}
@@ -992,7 +1014,8 @@ FEATURED = {
 }
 
 PARTNER_GROUPS = ["Defence systems and platforms", "Communications and critical communications",
-                  "Optronics and thermal imaging", "Cyber security", "AI and digital intelligence"]
+                  "Optronics and thermal imaging", "Cyber security", "AI and digital intelligence",
+                  "Safe city, identity and commercial systems"]
 PARTNER_REGIONS = ["China", "Europe", "North America", "Russia and Central Asia", "East Asia", "Pakistan"]
 
 # --------------------------------------------------------------------------- Section 4.9.3

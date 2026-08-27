@@ -166,9 +166,17 @@ acknowledged within one working day.
 
 ### 3. Clear the manufacturer imagery you now hold
 
-`assets/img/partners/` holds 15 manufacturer marks and `assets/img/products/` holds 20
-product plates, pulled from the manufacturers' own sites (dti.com.pk, hytera.com,
-trilliuminfosec.com, rapidev.com, shibli.com).
+`assets/img/partners/` holds 25 manufacturer marks and `assets/img/products/` holds
+121 product images, pulled from the manufacturers' own sites (dti.com.pk, hytera.com,
+trilliuminfosec.com, rapidev.com, shibli.com, sunmi.com, asyantiforgery.com,
+genuine-printing.com, rds.net.pk, everbridge.com).
+
+**Every one of the 197 catalogue entries carries an image.** Named models resolve to
+the manufacturer's photograph of that exact model, families to a representative image,
+and the generated technical plate remains the fallback for anything not yet mapped. The
+mapping lives in `_build/prodmap.py`. The partner logo set is derived from whatever PNGs
+sit in `assets/img/partners/`, so adding a cleared logo is a one-file change with no
+code edit.
 
 Trademarks are reproduced **unaltered** — trimmed and seated on a neutral tile, never
 recoloured or knocked out. Product shots are cut from their original backgrounds and

@@ -523,12 +523,20 @@ def build_products():
                  % (dm["slug"], "|".join(PLATFORM_MAP[dm["slug"]]), "|".join(ENV_MAP[dm["slug"]]),
                     "|".join(FUNC_MAP[dm["slug"]]), r["man"],
                     (r["name"] + " " + r["desc"] + " " + strip_tags(dm["name"])).replace('"', "")))
-        desig_cls = ' class="mono" style="color:var(--text);font-size:.95rem"' if r["kind"] == "model" else ""
+        stem = image_for(r["name"], r["kind"], dm["slug"])
+        if stem:
+            media = ('<div class="pcard-img"><img src="%sassets/img/products/%s.jpg" alt="%s" '
+                     'loading="lazy" width="1000" height="750"></div>' % (rel(d), stem, r["name"]))
+        else:
+            media = ('<div class="pcard-img is-plate">%s</div>'
+                     % plate(dm["slug"] + "|" + r["name"], dm["icon"], "DOMAIN " + dm["n"]))
+        desig_cls = ' class="pdesig"' if r["kind"] == "model" else ""
         cards.append(
-            '<a class="card" %s href="%s"><span class="c-n">%s &middot; DOMAIN %s</span>'
+            '<a class="pcard" %s href="%s">%s<div class="pcard-body">'
+            '<span class="c-n">%s &middot; DOMAIN %s</span>'
             '<h3%s>%s</h3><p>%s</p>'
-            '<span class="tlink">Request detail <i class="arw"></i></span></a>'
-            % (attrs, url(d, "capabilities/" + dm["slug"]), r["place"], dm["n"],
+            '<span class="tlink">Request detail <i class="arw"></i></span></div></a>'
+            % (attrs, url(d, "capabilities/" + dm["slug"]), media, r["place"], dm["n"],
                desig_cls, r["name"], r["desc"]))
 
     def facet(key, values, labels=None):

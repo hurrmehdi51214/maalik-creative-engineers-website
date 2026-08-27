@@ -12,6 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import *          # noqa
 from icons import icon      # noqa
 from plates import plate    # noqa
+from prodmap import image_for  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
@@ -340,6 +341,11 @@ def cta_band(depth, img="contact-band"):
     </div>
   </div>
 </section>""" % (rel(depth), img, url(depth, "contact/request-for-information"), url(depth, "downloads"))
+
+
+PARTNER_LOGOS = {os.path.splitext(f)[0]
+                 for f in os.listdir(os.path.join(ROOT, "assets", "img", "partners"))
+                 if f.endswith(".png")}
 
 
 def logo_wall(depth, partners):

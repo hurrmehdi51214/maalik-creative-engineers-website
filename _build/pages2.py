@@ -151,12 +151,17 @@ def build_partners_index():
     for p in PARTNERS:
         chips = "".join('<span class="chip" style="cursor:default;font-size:.72rem;padding:4px 9px">%s</span>'
                         % dom_by_slug(x)["short"] for x in p["domains"] if dom_by_slug(x))
+        if p["slug"] in PARTNER_LOGOS:
+            mark = ('<span class="pl-mark"><img src="%sassets/img/partners/%s.png" alt="%s" '
+                    'loading="lazy" width="420" height="200"></span>' % (rel(d), p["slug"], p["name"]))
+        else:
+            mark = '<span class="pl-mark is-text"><span>%s</span></span>' % p["name"]
         cards.append(
-            '<a class="card rv" data-pgroup="%s|%s" href="%s">'
+            '<a class="card rv" data-pgroup="%s|%s" href="%s">%s'
             '<span class="c-n">%s</span><h3>%s</h3>'
             '<p>%s</p><div class="chips" style="margin-bottom:1.2rem">%s</div>'
             '<span class="tlink">View profile <i class="arw"></i></span></a>'
-            % (p["group"], p["region"], url(d, "partners/" + p["slug"]), p["country"],
+            % (p["group"], p["region"], url(d, "partners/" + p["slug"]), mark, p["country"],
                p["name"], p["supplies"][:190] + ("&hellip;" if len(p["supplies"]) > 190 else ""), chips))
 
     group_chips = '<button class="chip on" data-lf="">All</button>' + "".join(
