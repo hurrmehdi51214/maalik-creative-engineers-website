@@ -41,7 +41,8 @@ def build_home():
         hero(d, "hero-command", "Defence and advanced technology solutions",
              "From stated requirement<br>to sustained capability.", DESCRIPTORS["hero_sub"],
              [("Explore Capabilities", url(d, "capabilities"), "btn-primary"),
-              ("Submit a Requirement", url(d, "contact/request-for-information"), "btn-ghost")])
+              ("Submit a Requirement", url(d, "contact/request-for-information"), "btn-ghost")],
+             video="hero-command")
         + '<section class="stats"><div class="wrap">%s</div></section>' % stat_html
         + """
 <section class="section texture">

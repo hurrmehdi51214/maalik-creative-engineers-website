@@ -281,6 +281,21 @@
   if (mq.addEventListener) mq.addEventListener('change', onMq);
   else if (mq.addListener) mq.addListener(onMq);
 
+
+  /* ---- hero video ----
+     Autoplay is unreliable on metered or low-power devices, and the still
+     underneath is a perfectly good hero, so a failure is silent. */
+  document.querySelectorAll('.hero-video').forEach(function (v) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.removeAttribute('autoplay'); v.pause(); v.remove(); return;
+    }
+    v.addEventListener('playing', function () {
+      if (v.parentElement) v.parentElement.classList.add('is-playing');
+    });
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { v.remove(); });
+  });
+
   /* ---- current year ---- */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

@@ -281,15 +281,27 @@ def page(path, title, desc, body, active="", depth=None):
 
 
 # --------------------------------------------------------------------------- fragments
-def hero(depth, img, eyebrow, h1, sub, ctas=None, klass="", crumb_html=""):
+def hero(depth, img, eyebrow, h1, sub, ctas=None, klass="", crumb_html="", video=None):
     cta = ""
     if ctas:
         cta = '<div class="btn-row">' + "".join(
             '<a class="btn %s" href="%s">%s <i class="arw"></i></a>' % (c[2], c[1], c[0]) for c in ctas
         ) + "</div>"
+    still = ('<img src="%sassets/img/%s.jpg" alt="" fetchpriority="high">'
+             % (rel(depth), img))
+    if video:
+        # The still is the poster, so the frame never changes when the loop
+        # takes over. Anyone who has asked for less motion keeps the still.
+        media = ('<video class="hero-video" autoplay muted loop playsinline '
+                 'preload="metadata" poster="%sassets/img/%s.jpg">'
+                 '<source src="%sassets/video/%s.mp4" type="video/mp4">'
+                 '</video>%s'
+                 % (rel(depth), img, rel(depth), video, still))
+    else:
+        media = still
     return """
 <section class="hero %s">
-  <div class="hero-bg"><img src="%sassets/img/%s.jpg" alt="" fetchpriority="high"></div>
+  <div class="hero-bg">%s</div>
   <div class="hero-grid"></div>
   <div class="hero-inner"><div class="wrap">
     %s
@@ -299,7 +311,7 @@ def hero(depth, img, eyebrow, h1, sub, ctas=None, klass="", crumb_html=""):
     %s
   </div></div>
   <div class="hero-scan"></div>
-</section>""" % (klass, rel(depth), img, crumb_html, eyebrow, h1, sub, cta)
+</section>""" % (klass, media, crumb_html, eyebrow, h1, sub, cta)
 
 
 def crumb(depth, trail):
