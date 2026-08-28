@@ -572,6 +572,7 @@ table.spec td.desig{font-family:"IBM Plex Mono",monospace;color:var(--text);whit
 .person{border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
 .person .pf{aspect-ratio:4/5;background:linear-gradient(160deg,var(--pf-a),var(--pf-b));
   display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid var(--line-soft)}
+.person .pf img{width:100%;height:100%;display:block;object-fit:cover}
 .person .pf::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:3px;background:var(--red)}
 .person .pf span{font-family:"Barlow Condensed",sans-serif;font-size:.76rem;letter-spacing:.22em;
   text-transform:uppercase;color:var(--text-faint);text-align:center;padding:0 20px;line-height:1.7}

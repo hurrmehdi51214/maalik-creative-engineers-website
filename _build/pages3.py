@@ -144,36 +144,36 @@ def build_about():
 def build_leadership():
     d = 2
     people = [
-        ("Ali Asad", "Chief Executive Officer",
+        ("Ali Asad", "Ali asad.jpg", "Chief Executive Officer",
          "Ali Asad leads the company and holds the manufacturer relationships that underpin the "
          "portfolio. He sets the commercial structure of each program, from first technical "
          "assessment through to contract closure, and represents the company at principal level "
          "with the manufacturers we are authorised to act for. He has overseen the consolidation "
          "of the company's activity into the twelve capability domains published on this site."),
-        ("Hurr Mehdi", "Director and Chief Operating Officer",
+        ("Hurr Mehdi", "hurr mehdi.jpg", "Director and Chief Operating Officer",
          "Hurr Mehdi is responsible for delivery. He heads programs and procurement and contracts, "
          "which means every requirement that enters the company passes through his function twice: "
          "once as a bid to be built and once as a program to be run. He works directly with "
          "customers' technical staff on requirement definition, and owns documentation discipline "
          "and compliance across submissions."),
-        ("Saeed Ul Haq", "Head of Support and Sustainment",
+        ("Saeed Ul Haq", "Saeed Ul Haq.jpg", "Head of Support and Sustainment",
          "Saeed Ul Haq is accountable for what happens after delivery: spares provisioning, "
          "warranty administration, scheduled and unscheduled maintenance, depot repair and life "
          "extension of systems already in service. He sizes initial provisioning against real "
          "usage rather than assumption, and manages the in-country service capability that keeps "
          "delivered equipment available."),
-        ("Hassan Zaheer", "Head of Software Engineering",
+        ("Hassan Zaheer", "Hassan zaheer.jpg", "Head of Software Engineering",
          "Hassan Zaheer leads bespoke software and systems development, covering mission and "
          "enterprise software, embedded and IoT engineering, and the integration layer that makes "
          "multi-vendor equipment behave as one system. He is responsible for architecture, "
          "interface definition and the handover of source, documentation and build environment "
          "as part of every deliverable."),
-        ("Shahroz Ahmed", "Head of Communications Systems",
+        ("Shahroz Ahmed", "Shahroz Ahmed.jpg", "Head of Communications Systems",
          "Shahroz Ahmed covers the communications portfolio end to end: narrowband tactical radio, "
          "trunked networks, private broadband and satellite, together with the dispatch and "
          "command layer above them. He works on coverage and interoperability problems at "
          "formation scale, and runs commissioning and operator training for delivered networks."),
-        ("Numan Fiaz", "Head of Cyber and Digital",
+        ("Numan Fiaz", "Numan Fiaz.jpg", "Head of Cyber and Digital",
          "Numan Fiaz leads the cyber security practice and the applied artificial intelligence "
          "portfolio. His remit spans security assessment, managed security operations, incident "
          "response and governance work, alongside the data fusion and analytics platforms supplied "
@@ -181,9 +181,9 @@ def build_leadership():
          "treated as product requirements rather than options."),
     ]
     cards = "".join(
-        '<div class="person rv"><div class="pf"><span>Portrait<br>to follow</span></div>'
+        '<div class="person rv"><div class="pf"><img src="%sassets/img/leadership/%s" alt="Portrait of %s"></div>'
         '<div class="pb"><h4>%s</h4><div class="role">%s</div><p>%s</p></div></div>'
-        % (n, r, b) for n, r, b in people)
+        % (rel(d), f.replace(" ", "%20"), n, n, r, b) for n, f, r, b in people)
 
     body = (
         hero(d, "careers-team", "About", "Leadership",
@@ -205,11 +205,8 @@ def build_leadership():
 
 <section class="section ink2">
   <div class="wrap"><div class="note" style="max-width:860px">
-    <h4>Portraits to follow</h4>
-    <p>Photography is scheduled. All six portraits will be shot in a single session with identical
-      background, lighting and crop, at 1200 &times; 1500. Mismatched portraits are the fastest way
-      for an institutional site to look small, which is why the placeholders stay until the full
-      set exists.</p>
+    <h4>Leadership portraits</h4>
+    <p>Portraits of the leadership team, presented with a consistent crop across the full set.</p>
   </div></div>
 </section>
 """ % cards
