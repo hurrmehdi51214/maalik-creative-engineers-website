@@ -38,11 +38,11 @@ def build_home():
         % (url(d, "insights"), t) for t in BRIEF_TOPICS[:3])
 
     body = (
-        hero(d, "hero-command", "Defence and advanced technology solutions",
+        hero(d, "hero-orbital", "Defence and advanced technology solutions",
              "From stated requirement<br>to sustained capability.", DESCRIPTORS["hero_sub"],
              [("Explore Capabilities", url(d, "capabilities"), "btn-primary"),
               ("Submit a Requirement", url(d, "contact/request-for-information"), "btn-ghost")],
-             video="hero-command")
+             video="hero-orbital")
         + '<section class="stats"><div class="wrap">%s</div></section>' % stat_html
         + """
 <section class="section texture">

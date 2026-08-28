@@ -252,7 +252,7 @@ def page(path, title, desc, body, active="", depth=None):
 <meta property="og:title" content="%s">
 <meta property="og:description" content="%s">
 <meta property="og:type" content="website">
-<meta property="og:image" content="%sassets/img/hero-main.jpg">
+<meta property="og:image" content="%sassets/img/hero-orbital.jpg">
 <meta name="theme-color" content="#060607">
 <link rel="icon" href="%sassets/logo/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="%sassets/logo/favicon.png">
