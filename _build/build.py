@@ -292,7 +292,7 @@ def hero(depth, img, eyebrow, h1, sub, ctas=None, klass="", crumb_html="", video
     if video:
         # The still is the poster, so the frame never changes when the loop
         # takes over. Anyone who has asked for less motion keeps the still.
-        media = ('<video class="hero-video" autoplay muted loop playsinline '
+        media = ('<video class="hero-video" muted loop playsinline '
                  'preload="metadata" poster="%sassets/img/%s.jpg">'
                  '<source src="%sassets/video/%s.mp4" type="video/mp4">'
                  '</video>%s'

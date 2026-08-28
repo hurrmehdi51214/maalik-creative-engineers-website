@@ -282,18 +282,27 @@
   else if (mq.addListener) mq.addListener(onMq);
 
 
-  /* ---- hero video ----
-     Autoplay is unreliable on metered or low-power devices, and the still
-     underneath is a perfectly good hero, so a failure is silent. */
+  /* ---- hero video ---- */
   document.querySelectorAll('.hero-video').forEach(function (v) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       v.removeAttribute('autoplay'); v.pause(); v.remove(); return;
     }
+    v.autoplay = false;
+    v.pause();
+    var hero = v.closest('.hero');
     v.addEventListener('playing', function () {
       if (v.parentElement) v.parentElement.classList.add('is-playing');
     });
-    var p = v.play();
-    if (p && p.catch) p.catch(function () { v.remove(); });
+    if (hero) {
+      hero.addEventListener('mouseenter', function () {
+        var p = v.play();
+        if (p && p.catch) p.catch(function () { v.remove(); });
+      });
+      hero.addEventListener('mouseleave', function () {
+        v.pause();
+        if (v.parentElement) v.parentElement.classList.remove('is-playing');
+      });
+    }
   });
 
   /* ---- current year ---- */
